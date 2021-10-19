@@ -1,11 +1,16 @@
 #
-# Script de Windows PowerShell para implementación de AD DS
+# Script de Windows PowerShell para implementación de AD DS en nuevo Bosque
 #
 
 $dominioFQDN = "bsr.local"
 $dominioNETBIOS = "BSR"
 $adminPass = "jcr-bsr2021."
-Import-Module ADDSDeployment
+
+if (!(Get-Module -Name ADDSDeployment)) #Se comprueba si se tiene cargado el módulo
+{
+  Import-Module ADDSDeployment #Se carga el módulo
+}
+
 Install-ADDSForest `
 -CreateDnsDelegation:$False `
 -DatabasePath "C:\Windows\NTDS" `
