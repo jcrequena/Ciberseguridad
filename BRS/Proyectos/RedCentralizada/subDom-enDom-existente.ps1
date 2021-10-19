@@ -9,12 +9,14 @@ $dominioFQDN = "ciber.local"
 $domainName = "bsr"
 $domainNETBIOS = "BSR"
 
-if (!(Get-Module -Name ADDSDeployment)) #Se comprueba si se tiene cargado el módulo
-{
-  Import-Module ADDSDeployment #Se carga el módulo
-}
-Install-ADDSDomain -NoGlobalCatalog:$false -CreateDnsDelegation:$true -Credential (Get-Credential) -DatabasePath "C:\Windows\NTDS" -DomainMode "WinThreshold" -DomainType "ChildDomain" -InstallDns:$true -LogPath "C:\Windows\NTDS" -NewDomainName $domainName -NewDomainNetbiosName $domainNETBIOS -ParentDomainName $dominioFQDN -NoRebootOnCompletion:$false -SiteName "Default-First-Site-Name" -SysvolPath "C:\Windows\SYSVOL" -Force:$true
+#Para instalar el rol AD DS para poder promocionar un dominio y las herramientas de administración de Active Directory, el comando es:
+Install-WindowsFeature –Name AD-Domain-Services –IncludeManagementTools
+
+# Subdominio
 #-Force:$true fuerza la instalación sin preguntar al usuario.
+
+Install-ADDSDomain -NoGlobalCatalog:$false -CreateDnsDelegation:$true -Credential (Get-Credential) -DatabasePath "C:\Windows\NTDS" -DomainMode "WinThreshold" -DomainType "ChildDomain" -InstallDns:$true -LogPath "C:\Windows\NTDS" -NewDomainName $domainName -NewDomainNetbiosName $domainNETBIOS -ParentDomainName $dominioFQDN -NoRebootOnCompletion:$false -SiteName "Default-First-Site-Name" -SysvolPath "C:\Windows\SYSVOL" -Force:$true
+
 
 #Nota:
 #https://docs.microsoft.com/en-us/powershell/module/addsdeployment/install-addsforest?view=windowsserver2019-ps
