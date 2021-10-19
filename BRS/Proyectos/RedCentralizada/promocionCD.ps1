@@ -2,9 +2,9 @@
 # Script de Windows PowerShell para implementación de AD DS en nuevo Bosque
 #
 
-$dominioFQDN = "bsr.local"
-$dominioNETBIOS = "BSR"
-$adminPass = "jcr-bsr2021."
+$dominioFQDN = "ciber.local"
+$dominioNETBIOS = "CIBER"
+$adminPass = "jcr-ciber2021."
 
 if (!(Get-Module -Name ADDSDeployment)) #Se comprueba si se tiene cargado el módulo
 {
