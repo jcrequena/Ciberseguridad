@@ -22,3 +22,5 @@ Restart-Computer -force
 New-NetIPAddress –IPAddress $IPAddress -DefaultGateway $Gateway -PrefixLength $Prefix -InterfaceIndex (Get-NetAdapter).InterfaceIndex
 Set-DNSClientServerAddress –InterfaceIndex (Get-NetAdapter).InterfaceIndex –ServerAddresses $IPAddress
 
+
+
