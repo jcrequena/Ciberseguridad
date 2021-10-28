@@ -6,3 +6,8 @@ New-LocalUser “nombre_usuario” -Password $passAccount –Fullname “Nombre 
 
 
 Add-LocalGroupMember -Group “Administradores” -Member “usuario_creado” 
+
+
+
+
+lusrmgr.msc
