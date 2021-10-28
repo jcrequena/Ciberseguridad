@@ -1,5 +1,9 @@
-Pasos a realizar:
-1. Despromocionar el subdomino: Quitar el Rol AD DS, 
+0. Acciones a realizar en el Subdominio
+1. Despromocionar el subdomino: Quitar el Rol AD DS (disminuir el controlador de dominio de nivel).
+Los comandos powershell que realizan la despromoción son los siguientes:
+Uninstall-addsdomaincontroller
+Uninstall-windowsfeature
+
 2. Acceder al sistema con la cuenta local del equipo: Administrador
 3. Crear una cuenta nueva que pertenezca al grupo Administradores
 Ejemplo:
@@ -9,6 +13,7 @@ New-LocalUser “jcrequena” -Password $passAccount –Fullname “Juan Carlos 
 #Añadir un usuario a un grupo
 Add-LocalGroupMember -Group “Administradores” -Member "jcrequena" 
 
+
 4.Comprobaciones a realizar en el master (dominio-raiz)
 4.1 Comprobar la replicación
 4.1.1 Abrir una consola cmd y ejecutar:
@@ -16,8 +21,8 @@ repadmin /replsum * /bysrc /bydest /sort:delta
 Si aparece algun error referido a: Se presentaron los siguientes errores operativos al intentar recuperar la información de replicación:
 athos.LAPLANA.san-gva.local
 porthos.GENERAL.san-gva.local
-Es decir, el dominio raíz muestra información de los subdominios que se acaban de despromocionar, por lo tanto, hay que eliminar en el dominio raíz cualquier información 
-residual de subdominios que existieron en su momento, pero ya no están operativos.
+Es decir, el dominio raíz muestra información de los subdominios que se acaban de despromocionar, por lo tanto, hay que eliminar en el dominio raíz cualquier información residual de subdominios que existieron en su momento, pero ya no están operativos.
+
 4.2 Limpiar los metadatos (por si existe información residual de los subdominios que se han despromocionado)
 4.2-1 Abrir una consola cmd como Administrador
 4.2.2 Ejecutar el comando ntdsutil y pulsar Enter.
@@ -33,6 +38,6 @@ residual de subdominios que existieron en su momento, pero ya no están operativ
 4.2.7 Escribe quit para salir.
 
 
-
-
-Referencia: https://docs.microsoft.com/es-es/windows-server/identity/ad-ds/deploy/ad-ds-metadata-cleanup
+Referencias: 
+ https://docs.microsoft.com/es-es/windows-server/identity/ad-ds/deploy/ad-ds-metadata-cleanup
+ https://docs.microsoft.com/es-es/windows-server/identity/ad-ds/deploy/demoting-domain-controllers-and-domains--level-200-
