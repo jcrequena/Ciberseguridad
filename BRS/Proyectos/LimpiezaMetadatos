@@ -3,8 +3,9 @@ Acciones a realizar en el Subdominio
 Hay que seleccionar la opción que es el último Controlador de Dominio en el bosque.
 
 Los comandos powershell que realizan la despromoción son los siguientes:
-Uninstall-addsdomaincontroller
-Uninstall-windowsfeature
+PS C:>Import-Module ADDSDeployment
+PS C:> Uninstall-ADDSDomainController -LastDomainControllerInDomain:$true -ForceRemoval:$true
+PS C:> Uninstall-WindowsFeature -Name AD-Domain-Services, DNS -Confirm:$false
 
 2.Acceder al sistema con la cuenta local del equipo: Administrador
 3.Crear una cuenta nueva que pertenezca al grupo Administradores
@@ -44,3 +45,4 @@ donde <ServerName> es el servidor a eliminar.
 Referencias: 
  https://docs.microsoft.com/es-es/windows-server/identity/ad-ds/deploy/ad-ds-metadata-cleanup
  https://docs.microsoft.com/es-es/windows-server/identity/ad-ds/deploy/demoting-domain-controllers-and-domains--level-200-
+ http://technet.microsoft.com/en-us/library/hh974714.aspx
