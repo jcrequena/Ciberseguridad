@@ -1,5 +1,7 @@
 Acciones a realizar en el Subdominio
 1.Despromocionar el subdomino: Quitar el Rol AD DS (disminuir el controlador de dominio de nivel).
+Hay que seleccionar la opción que es el último Controlador de Dominio en el bosque.
+
 Los comandos powershell que realizan la despromoción son los siguientes:
 Uninstall-addsdomaincontroller
 Uninstall-windowsfeature
