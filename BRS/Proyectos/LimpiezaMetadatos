@@ -8,13 +8,20 @@ PS C:> Uninstall-ADDSDomainController -LastDomainControllerInDomain -ForceRemova
 PS C:> Uninstall-WindowsFeature -Name AD-Domain-Services, DNS -Confirm:$false
 
 2.Acceder al sistema con la cuenta local del equipo: Administrador
-3.Crear una cuenta nueva que pertenezca al grupo Administradores
+3.Crear una nueva cuenta local que pertenezca al grupo Administradores.
 Ejemplo:
 $pass="Eeuptca-100"
 $passAccount=ConvertTo-SecureString $pass -AsPlainText -force
 New-LocalUser “jcrequena” -Password $passAccount –Fullname “Juan Carlos Requena” -Description “Cuenta local de administración del equipo”
 #Añadir un usuario a un grupo
 Add-LocalGroupMember -Group “Administradores” -Member "jcrequena" 
+Cuando el servidor esté promocionado a CD, accedmos al mismo con el usuario Administardor del dominio y añadimos a este usuario 
+al grupo Administradores del Dominio.
+Este usuario se autenticará en el CD -->  al acceder tendrá tendrá provilegios de Administrador local del equipo y del Domino.
+Ejemplo de autenticación:
+Usuario: smr\jcrequena
+password:Eeuptca-100
+
 ___________________________________________________________________________________
 1.Comprobaciones a realizar en el master (dominio-raiz)
 2.Comprobar la replicación
