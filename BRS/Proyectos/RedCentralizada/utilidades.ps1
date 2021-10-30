@@ -3,6 +3,12 @@
 #Comprobar la lista de controladores del dominio con cuentas en el dominio
 
 netdom query dc
+
+#
+#Compronar controlador del dominio principal
+#
+netdom query fsmo
+
 #
 #Información sobre el proceso de replicación
 #
