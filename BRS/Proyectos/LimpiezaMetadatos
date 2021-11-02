@@ -33,24 +33,49 @@ porthos.GENERAL.san-gva.local
 Es decir, el dominio raíz muestra información de los subdominios que se acaban de despromocionar, por lo tanto, 
 hay que eliminar en el dominio raíz cualquier información residual de subdominios que existieron en su momento, pero ya no están operativos.
 
-4.Limpiar los metadatos (por si existe información residual de los subdominios que se han despromocionado)
-5.Abrir una consola cmd como Administrador
-6.Ejecutar el comando ntdsutil y pulsar Enter.
-7.Aparecerá en la consola esto --> ntdsutil: --> Hay que escribir metadata cleanup y pulsar Enter.
-8.Aparecerá en la consola esto --> metadata cleanup: --> Hay que escribir remove selected domain <domain> y pulsar Enter, 
+_____________________________________________________________________________________________________________________________________________
+#Limpiar Dominios Huérfanos
+1.Limpiar los metadatos (por si existe información residual de los subdominios que se han despromocionado)
+2.Abrir una consola cmd como Administrador
+3.Ejecutar el comando ntdsutil y pulsar Enter.
+4.Aparecerá en la consola esto --> ntdsutil: --> Hay que escribir metadata cleanup y pulsar Enter.
+5.Aparecerá en la consola esto --> metadata cleanup: --> Hay que escribir connections y pulsar Enter.
+6.Escribir connect to server <servidor> donde servidor es el equipo domino raíz (el que está vivo)
+7. Escribir quit
+8. Escribir select operation target --> Para seleccionar el servidor que se debe hacer limpieza del Active Directory.
+9. Ahora hay que seleccionar el sitio, dominio y servidor que está muerto:
+10. Escribir
+list sites
+select site 0
+list domains
+select domain 0
+list servers for domain in site
+select server 0
+quit
+11. Ahora hay que proceder a hacer limpieza del servidor seleccionado:
+remove selected server
+
+__________________________________________________________________________________
+Limpieza de Metadatos
+
+1.Limpiar los metadatos (por si existe información residual de los subdominios que se han despromocionado)
+2.Abrir una consola cmd como Administrador
+3.Ejecutar el comando ntdsutil y pulsar Enter.
+4.Aparecerá en la consola esto --> ntdsutil: --> Hay que escribir metadata cleanup y pulsar Enter.
+5.Aparecerá en la consola esto --> metadata cleanup: --> Hay que escribir remove selected domain <domain> y pulsar Enter, 
 donde <domain> es el nombre del dominio a eliminar.
  Ejemplo: 
   remove selected domain LAPLANA.san-gva.local
-9.Aparecerá en la consola esto --> metadata cleanup: --> Hay que escribir remove selected server <ServerName> y pulsar Enter, 
+6.Aparecerá en la consola esto --> metadata cleanup: --> Hay que escribir remove selected server <ServerName> y pulsar Enter, 
 donde <ServerName> es el servidor a eliminar.
  Ejemplo: 
   remove selected server athos.LAPLANA.san-gva.local
   remove selected server porthos.GENERAL.san-gva.local
-10.En el cuadro de diálogo Quitar configuración del servidor,revisad la información y la advertencia y, a continuación, 
+7.En el cuadro de diálogo Quitar configuración del servidor,revisad la información y la advertencia y, a continuación, 
   hay que hacer clic en Sí para quitar el objeto de servidor y los metadatos.
-11.En este momento, Ntdsutil confirma que el controlador de dominio se quitó correctamente. 
+8.En este momento, Ntdsutil confirma que el controlador de dominio se quitó correctamente. 
  Si recibe un mensaje de error que indica que no se encuentra el objeto, es posible que el controlador de dominio se haya quitado anteriormente.
-12.Escribe quit para salir.
+9.Escribe quit para salir.
 
 
 Referencias: 
