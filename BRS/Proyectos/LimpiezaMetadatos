@@ -37,19 +37,24 @@ hay que eliminar en el dominio raíz cualquier información residual de subdomin
 5.Abrir una consola cmd como Administrador
 6.Ejecutar el comando ntdsutil y pulsar Enter.
 7.Aparecerá en la consola esto --> ntdsutil: --> Hay que escribir metadata cleanup y pulsar Enter.
-8.Aparecerá en la consola esto --> metadata cleanup: --> Hay que escribir remove selected server <ServerName> y pulsar Enter, 
+8.Aparecerá en la consola esto --> metadata cleanup: --> Hay que escribir remove selected domain <domain> y pulsar Enter, 
+donde <domain> es el nombre del dominio a eliminar.
+ Ejemplo: 
+  remove selected domain LAPLANA.san-gva.local
+9.Aparecerá en la consola esto --> metadata cleanup: --> Hay que escribir remove selected server <ServerName> y pulsar Enter, 
 donde <ServerName> es el servidor a eliminar.
  Ejemplo: 
   remove selected server athos.LAPLANA.san-gva.local
   remove selected server porthos.GENERAL.san-gva.local
-9.En el cuadro de diálogo Quitar configuración del servidor,revisad la información y la advertencia y, a continuación, 
+10.En el cuadro de diálogo Quitar configuración del servidor,revisad la información y la advertencia y, a continuación, 
   hay que hacer clic en Sí para quitar el objeto de servidor y los metadatos.
-10.En este momento, Ntdsutil confirma que el controlador de dominio se quitó correctamente. 
+11.En este momento, Ntdsutil confirma que el controlador de dominio se quitó correctamente. 
  Si recibe un mensaje de error que indica que no se encuentra el objeto, es posible que el controlador de dominio se haya quitado anteriormente.
-11.Escribe quit para salir.
+12.Escribe quit para salir.
 
 
 Referencias: 
+ https://docs.microsoft.com/en-US/troubleshoot/windows-server/identity/remove-orphaned-domains
  https://docs.microsoft.com/es-es/windows-server/identity/ad-ds/deploy/ad-ds-metadata-cleanup
  https://docs.microsoft.com/es-es/windows-server/identity/ad-ds/deploy/demoting-domain-controllers-and-domains--level-200-
  http://technet.microsoft.com/en-us/library/hh974714.aspx
