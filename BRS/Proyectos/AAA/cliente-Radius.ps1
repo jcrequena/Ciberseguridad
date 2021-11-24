@@ -9,4 +9,4 @@ Install-WindowsFeature DirectAccess-VPN -IncludeManagementTools
 Install-RemoteAccess -PreRequisite
 
 #Instalación de VPN
-Install-RemoteAccess -VpnType VPN -RadiusServer 192.25.81.254 -SharedSecret “bMSHJzvP7A5xe#VeBJRPrxHLiEzRDaLvTKUXl#ssLCxAuI#W@ghPG2QybudPQoHG” -IPAddressRange 192.25.81.100, 192.168.11.130
+Install-RemoteAccess -VpnType VPN -RadiusServer 192.168.11.254 -SharedSecret “bMSHJzvP7A5xe#VeBJRPrxHLiEzRDaLvTKUXl#ssLCxAuI#W@ghPG2QybudPQoHG” -IPAddressRange 192.25.81.100, 192.168.11.130
