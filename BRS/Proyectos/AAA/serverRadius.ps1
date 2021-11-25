@@ -1,3 +1,11 @@
+#ESCENARIO de Ejemplo
+#dominio: ciber.local
+#subdominio:brs.ciber.local
+#Grupo Global dominio raíz: CIBER-GG-Radius
+#Usuario del subdominio brs.ciber.local: jcrequena
+
+
+
 #
 # 1. Instalar el Rol Servicios de acceso y directivas de redes
 #
@@ -31,5 +39,5 @@ Restart-Service IAS
 #     Export-NpsConfiguration -Path c:\ps\backup_nps.xml
 #     Import-NpsConfiguration -Path c:\ps\backup_nps.xml
 
-# 2.4 Establecer el Marcado de un usuario
+# 2.4 Establecer el Marcado del usuario del subdominio que se autenticará en el Servidor Radius
 Get-ADUser jcrequena -Properties msNPAllowDialin -Server brs.ciber.local
