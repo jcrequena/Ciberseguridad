@@ -12,7 +12,7 @@ Install-WindowsFeature -name NPAS -IncludeAllSubFeature  -IncludeManagementTools
 # VendorName será el tipo de radius que usaremos.
 # Sharesecret la contraseña para establecer la conexión.
 
-New-NpsRadiusClient -Name “ClientRadius-Subdominio1” -Address “192.168.11.253” `-SharedSecret “eeepc20” `
+New-NpsRadiusClient -Name “ClientRadius-Subdominio1” -Address “192.168.11.253” `-SharedSecret “eeepc20” -VendorName “Radius Standard”
 
 # Reiniciamos el servicio para que actualice las nueos clientes radius
 Restart-Service IAS
