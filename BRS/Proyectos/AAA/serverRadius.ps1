@@ -39,10 +39,4 @@ Restart-Service IAS
 #     Export-NpsConfiguration -Path c:\ps\backup_nps.xml
 #     Import-NpsConfiguration -Path c:\ps\backup_nps.xml
 
-# 2.4 Establecer el Marcado del usuario del subdominio que se autenticará en el Servidor Radius
-Get-ADUser jcrequena -Properties msNPAllowDialin -Server brs.ciber.local
-# Si el comando anterior no devolvió ningún resultado (vacío), 
-# esto significa que se utiliza el valor predeterminado "Control de acceso a través de la política de red NPS"
-# Para establecer el marcado de manera masiva a los usuarios de una UO, hacemos
-Get-ADUser -SearchBase "ou=Teletrabajo,dc=brs,dc=ciber,dc=local" -LDAPFilter "(msNPAllowDialin=*)" | % {Set-ADUser $_ -Properties msNPAllowDialin}
 
