@@ -1,0 +1,1 @@
+Install-WindowsFeature Server-Gui-Mgmt-Infra, Server-Gui-Shell -Restart -Source wim:d:\sources\install.wim:6
