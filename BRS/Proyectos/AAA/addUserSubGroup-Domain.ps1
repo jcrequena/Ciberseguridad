@@ -7,5 +7,5 @@ Add-ADGroupMember -Identity nombreGrupoGlobalSeguridad -Members subdomino\Nombre
 #subdominio:brs.ciber.local
 #Grupo Global dominio raíz: CIBER-GG-Radius
 #Usuario del subdominio brs.ciber.local: jcrequena
-#El comando a ejcutar en el domino raíz ciber.local sería:
+#El comando a ejecutar en el domino raíz ciber.local sería:
 Add-ADGroupMember -Identity  CIBER-GG-Radius -Members brs.ciber.local\jcrequena
