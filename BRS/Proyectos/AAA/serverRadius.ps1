@@ -30,3 +30,6 @@ Restart-Service IAS
 #     Se pueden crear en un servidor con GUI y exportarlas para luego importarlas en el Servidor Radius Core.     
 #     Export-NpsConfiguration -Path c:\ps\backup_nps.xml
 #     Import-NpsConfiguration -Path c:\ps\backup_nps.xml
+
+# 2.4 Establecer el Marcado de un usuario
+Get-ADUser jcrequena -Properties msNPAllowDialin -Server brs.ciber.local
