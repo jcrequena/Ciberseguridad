@@ -9,10 +9,12 @@ sudo apt install make
 sudo /sbin/modprobe openvswitch
 sudo /sbin/lsmod | grep openvswitch
 export PATH=$PATH:/usr/local/share/openvswitch/scripts
+#######################################################3
+sudo -s
+apt-get update -y
+apt-get install -y openvswitch-switch
 
-http://golanzakai.blogspot.com/2012/01/openvswitch-with-virtualbox.html
-
-sudo ovs-ctl start
+ovs-ctl start
 ovs-vsctl show
 
 ovs-vsctl add-br lan0
