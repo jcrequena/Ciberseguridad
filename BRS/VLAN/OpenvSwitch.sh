@@ -2,9 +2,7 @@ sudo -s
 apt-get update -y
 apt-get install -y openvswitch-switch
 
-ovs-ctl start
 ovs-vsctl show
-
 ovs-vsctl add-br lan0
 
 for tap in `seq 0 7`; do
@@ -23,7 +21,6 @@ ovs-vsctl list-ports lan0
 
 
 #Añadir etiquetas VLAN
-
 ovs-vsctl set-port lan0p0 tag=10
 ovs-vsctl set-port lan0p1 tag=20
 
