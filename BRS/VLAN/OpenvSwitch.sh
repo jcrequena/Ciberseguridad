@@ -10,8 +10,6 @@ sudo /sbin/modprobe openvswitch
 sudo /sbin/lsmod | grep openvswitch
 export PATH=$PATH:/usr/local/share/openvswitch/scripts
 
-sudo snap install openvswitch --edge
-
 http://golanzakai.blogspot.com/2012/01/openvswitch-with-virtualbox.html
 
 sudo ovs-ctl start
