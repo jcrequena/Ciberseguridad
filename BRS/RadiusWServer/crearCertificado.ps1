@@ -1,3 +1,4 @@
+#Create a Self-sign certificate for WPA2-Enterprise
 $date = (Get-Date).ToString('MMM-yyyy')
 $certificateExpiringYears = (Get-Date).AddYears(2)
 $FQND = "wificontroller.ciber.local"
