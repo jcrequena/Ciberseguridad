@@ -87,7 +87,7 @@ ldapadd -x -D cn=admin,dc=ciber,dc=local -W -f create_ldap_objects.ldif
 apt install freeradius freeradius-ldap freeradius-utils
 
 nano /etc/freeradius/3.0/clients.conf
-	 
+#El cliente será un punto de acceso o router inalámbrico 	 
 client uradius-client {
 ipaddr = 192.168.0.50
 secret = testing123
@@ -96,8 +96,10 @@ secret = testing123
 #Add the LDAP server domain name to hosts file
 nano /etc/hosts
 192.168.0.30 radius-openldap.ciber.local
+
 #Configure LDAP module with LDAP server details
-/etc/freeradius/3.0/mods-available/ldap
+nano /etc/freeradius/3.0/mods-available/ldap
+#Añadir la siguiente sección
 server = 'radius-openldap.ciber.local
 base_dn = 'ou=depInformatica,dc=ciber,dc=local'
 identity = 'cn=admin,dc=ciber,dc=local'
@@ -113,6 +115,7 @@ filter = '(objectClass=GroupOfNames)'
 membership_filter = "(|(&(objectClass=GroupOfNames)(member=%{control:Ldap-UserDn}))(&(objectClass=GroupOfNames)(member=%{control:Ldap-UserDn})))"
 membership_attribute = 'member'
 }
+
 #Enable the LDAP module
 cd /etc/freeradius/3.0/mods-enabled/
 ln -s ../mods-available/ldap .
