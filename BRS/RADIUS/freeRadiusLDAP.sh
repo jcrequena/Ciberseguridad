@@ -1,3 +1,4 @@
+#https://sysopstechnix.com/wpa2-enterprise-secure-your-organization-wi-fi-network/
 hostnamectl set-hostname radius-openldap.ciber.local
 nano /etc/hosts
 192.168.0.30 radius-openldap.ciber.local
@@ -47,4 +48,53 @@ cn: GGDepInformatica
 member: uid=usuInf-01,ou=depInformatica,dc=ciber,dc=local
 member: uid=usuInf-02,ou=depInformatica,dc=ciber,dc=local
 
+#Añadir el fichero al servidor LDAP
+ldapadd -x -D cn=admin,dc=ciber,dc=local -W -f create_ldap_objects.ldif 
+
+#Install & Configure FreeRADIUS as AAA Server. Required utilities for LDAP integration
+apt install freeradius freeradius-ldap freeradius-utils
+
+nano /etc/freeradius/3.0/clients.conf
 	 
+client uradius-client {
+ipaddr = 192.168.0.50
+secret = testing123
+}
+#Integrate FreeRADIUS with LDAP (for Authentication)
+#Add the LDAP server domain name to hosts file
+nano /etc/hosts
+192.168.0.30 radius-openldap.ciber.local
+#Configure LDAP module with LDAP server details
+/etc/freeradius/3.0/mods-available/ldap
+server = 'radius-openldap.ciber.local
+base_dn = 'ou=depInformatica,dc=ciber,dc=local'
+identity = 'cn=admin,dc=ciber,dc=local'
+password = abc123
+user {
+base_dn = "ou=depInformatica,dc=ciber,dc=local"
+#I'm using user's mail id as a username.
+filter = "(mail=%{%{Stripped-User-Name}:-%{User-Name}})"
+}
+group {
+ base_dn = "ou=grupos,ou=depInformatica,dc=ciber,dc=local"
+filter = '(objectClass=GroupOfNames)'
+membership_filter = "(|(&(objectClass=GroupOfNames)(member=%{control:Ldap-UserDn}))(&(objectClass=GroupOfNames)(member=%{control:Ldap-UserDn})))"
+membership_attribute = 'member'
+}
+#Enable the LDAP module
+cd /etc/freeradius/3.0/mods-enabled/
+ln -s ../mods-available/ldap .
+
+#Restricting access to a specific LDAP groups (for Authorization)
+#lines to the file /etc/freeradius/3.0/users:
+DEFAULT Ldap-Group == "cn=GGDepInformatica,ou=grupos,ou=depInformatica,dc=ciber,dc=local"
+Reply-Message = "You are Accepted"
+DEFAULT Auth-Type := Reject
+Reply-Message = "You are not allowed to access the WLAN!"
+
+#Testing the LDAP Connectivity
+#systemctl stop freeradius.service
+freeradius -X
+#En un equipo cliente radius, vamos a chequear la autenticación de un usuario LDAP en FreeRADIUS server.
+apt install freeradius-utils
+radtest usuInf-01@ciber.local abc123 192.168.0.30 10 testing123
