@@ -132,4 +132,4 @@ Reply-Message = "You are not allowed to access the WLAN!"
 freeradius -X
 #En un equipo cliente radius, vamos a chequear la autenticación de un usuario LDAP en FreeRADIUS server.
 apt install freeradius-utils
-radtest usuInf-01@ciber.local abc123 192.168.0.30 10 testing123
+radtest user03-01@ciber.local abc123 192.168.0.30 10 testing123
