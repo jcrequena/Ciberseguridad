@@ -103,7 +103,7 @@ nano /etc/freeradius/3.0/mods-available/ldap
 server = 'radius-openldap.ciber.local
 base_dn = 'ou=depInformatica,dc=ciber,dc=local'
 identity = 'cn=admin,dc=ciber,dc=local'
-password = abc123
+password = Camina-100
 user {
 base_dn = "ou=depInformatica,dc=ciber,dc=local"
 #I'm using user's mail id as a username.
@@ -122,7 +122,7 @@ ln -s ../mods-available/ldap .
 
 #Restricting access to a specific LDAP groups (for Authorization)
 #lines to the file /etc/freeradius/3.0/users:
-DEFAULT Ldap-Group == "cn=GGDepInformatica,ou=grupos,ou=depInformatica,dc=ciber,dc=local"
+DEFAULT Ldap-Group == "cn=GGProgramacion,ou=grupos,ou=depInformatica,dc=ciber,dc=local"
 Reply-Message = "You are Accepted"
 DEFAULT Auth-Type := Reject
 Reply-Message = "You are not allowed to access the WLAN!"
