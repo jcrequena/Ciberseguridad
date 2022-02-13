@@ -1,0 +1,71 @@
+##  eap.conf -- Configuration for EAP types (PEAP, TTLS, etc.)
+##
+##	$Id: a89a783663588017b12bcc076362e728261ba8f2 $
+confdir ='/etc/freeradius/3.0'
+certdir = ${confdir}/certs
+eap {
+	default_eap_type = ttls
+    timer_expire = 60
+	ignore_unknown_eap_types = no
+	cisco_accounting_username_bug = no
+	max_sessions = ${max_requests}
+	#md5 {
+	#}
+	#pwd {
+	#}
+	#gtc {
+	#	auth_type = PAP
+	#}
+	tls-config tls-common {
+		private_key_password = whatever
+		private_key_file = /etc/ssl/private/ssl-cert-snakeoil.key
+		certificate_file = /etc/ssl/certs/ssl-cert-snakeoil.pem
+		ca_file = /etc/ssl/certs/ca-certificates.crt
+		dh_file = ${certdir}/dh
+		random_file = /dev/urandom
+		ca_path = ${cadir}
+		cipher_list = "DEFAULT"
+		cipher_server_preference = no
+		disable_tlsv1_1 = yes
+		disable_tlsv1 = yes
+		tls_min_version = "1.2"
+		tls_max_version = "1.2"
+		ecdh_curve = "prime256v1"
+		cache {
+			enable = no
+			lifetime = 24 # hours
+			max_entries = 255
+			store {
+				Tunnel-Private-Group-Id
+			}
+		}
+		verify {
+		}
+		ocsp {
+			enable = no
+			override_cert_url = yes
+			url = "http://127.0.0.1/ocsp/"
+		}
+	}
+	tls {
+		tls = tls-common
+	}
+	ttls {
+		tls = tls-common
+		default_eap_type = tls
+		copy_request_to_tunnel = no
+		use_tunneled_reply = no
+		virtual_server = "inner-tunnel"
+		include_length = yes
+	}
+	peap {
+		tls = tls-common
+		default_eap_type = tls
+		copy_request_to_tunnel = no
+		use_tunneled_reply = no
+		virtual_server = "inner-tunnel"
+		include_length = yes
+	}
+	mschapv2 {
+	}
+}
