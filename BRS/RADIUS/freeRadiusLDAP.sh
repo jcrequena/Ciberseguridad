@@ -7,9 +7,13 @@ nano /etc/hosts
 apt update -y && apt upgrade -y
 #Install LDAP and reqired Utils
 apt install slapd ldap-utils
+
+#Se genera un hash de contraseña para los usuarios del directorio para incluirlo
+#en el archivo create_ldap_objects.ldif para cada usuario
 root@radius-openldap:~# slappasswd
 New password:
 Re-enter new password:
+{SSHA}0/hPk9iPBJQJxuFmM53j+YhQUuSvTzRt
 
 nano create_ldap_objects.ldif
 #Crear UOs
@@ -30,7 +34,7 @@ sn: user01
 displayName: Usuario 01 Informática
 givenName: Informática
 mail: user01@ciber.local
-userPassword: {SSHA}jFQAulicFL0des89xJCDVkyrLlq3dAT3
+userPassword: {SSHA}0/hPk9iPBJQJxuFmM53j+YhQUuSvTzRt
 
 dn: uid=user02,ou=depInformatica,dc=ciber,dc=local
 objectClass: inetOrgPerson
@@ -41,7 +45,7 @@ sn: user02
 displayName: Usuario 02 Informática
 givenName: Informática
 mail: user01@ciber.local
-userPassword: {SSHA}jFQAulicFL0des89xJCDVkyrLlq3dAT3
+userPassword: {SSHA}0/hPk9iPBJQJxuFmM53j+YhQUuSvTzRt
 
 dn: uid=user03,ou=depInformatica,dc=ciber,dc=local
 objectClass: inetOrgPerson
@@ -52,7 +56,7 @@ sn: user03
 displayName: Informática User03
 givenName: Informática
 mail: user03@ciber.local
-userPassword: {SSHA}jFQAulicFL0des89xJCDVkyrLlq3dAT3
+userPassword: {SSHA}0/hPk9iPBJQJxuFmM53j+YhQUuSvTzRt
 
 dn: uid=user04,ou=depInformatica,dc=ciber,dc=local
 objectClass: inetOrgPerson
@@ -63,7 +67,7 @@ sn: user04
 displayName: Usuarios 04 Informática
 givenName: Informática
 mail: user04@ciber.local
-userPassword: {SSHA}jFQAulicFL0des89xJCDVkyrLlq3dAT3
+userPassword: {SSHA}0/hPk9iPBJQJxuFmM53j+YhQUuSvTzRt
 
 #Create global group
 dn: cn=GGProgramacion,ou=grupos,ou=depInformatica,dc=ciber,dc=local
