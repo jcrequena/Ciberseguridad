@@ -15,77 +15,9 @@ New password:
 Re-enter new password:
 {SSHA}0/hPk9iPBJQJxuFmM53j+YhQUuSvTzRt
 
-nano create_ldap_objects.ldif
-#Crear UOs
-dn: ou=depInformatica,dc=ciber,dc=local
-objectClass: organizationalUnit
-ou: depInformatica
-
-dn: ou=grupos,ou=depInformatica,dc=ciber,dc=local
-objectClass: organizationalUnit
-ou: grupos
-#Create LDAP Users
-dn: uid=user01,ou=depInformatica,dc=ciber,dc=local
-objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: top
-cn: Usuario 01 Informática
-sn: user01
-displayName: Usuario 01 Informática
-givenName: Informática
-mail: user01@ciber.local
-userPassword: {SSHA}0/hPk9iPBJQJxuFmM53j+YhQUuSvTzRt
-
-dn: uid=user02,ou=depInformatica,dc=ciber,dc=local
-objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: top
-cn: Usuario 02 Informática
-sn: user02
-displayName: Usuario 02 Informática
-givenName: Informática
-mail: user01@ciber.local
-userPassword: {SSHA}0/hPk9iPBJQJxuFmM53j+YhQUuSvTzRt
-
-dn: uid=user03,ou=depInformatica,dc=ciber,dc=local
-objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: top
-cn: Usuario 03 Informática
-sn: user03
-displayName: Informática User03
-givenName: Informática
-mail: user03@ciber.local
-userPassword: {SSHA}0/hPk9iPBJQJxuFmM53j+YhQUuSvTzRt
-
-dn: uid=user04,ou=depInformatica,dc=ciber,dc=local
-objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: top
-cn: Informatica User04
-sn: user04
-displayName: Usuarios 04 Informática
-givenName: Informática
-mail: user04@ciber.local
-userPassword: {SSHA}0/hPk9iPBJQJxuFmM53j+YhQUuSvTzRt
-
-#Create global group
-dn: cn=GGProgramacion,ou=grupos,ou=depInformatica,dc=ciber,dc=local
-objectClass: groupOfNames
-objectClass: top
-cn: GGProgramacion
-member: uid=user01,ou=depInformatica,dc=ciber,dc=local
-member: uid=user02,ou=depInformatica,dc=ciber,dc=local
-
-dn: cn=GGRedes,ou=grupos,ou=depInformatica,dc=ciber,dc=local
-objectClass: groupOfNames
-objectClass: top
-cn: GGRedes
-member: uid=user03,ou=depInformatica,dc=ciber,dc=local
-member: uid=user04,ou=depInformatica,dc=ciber,dc=local
-
+#Crear el fichero ldif con los objetos ldap
 #Añadir el fichero al servidor LDAP
-ldapadd -x -D cn=admin,dc=ciber,dc=local -W -f create_ldap_objects.ldif 
+ldapadd -x -D cn=admin,dc=ciber,dc=local -W -f crear_objetos_ldap.ldif 
 
 #Install & Configure FreeRADIUS as AAA Server. Required utilities for LDAP integration
 apt install freeradius freeradius-ldap freeradius-utils
