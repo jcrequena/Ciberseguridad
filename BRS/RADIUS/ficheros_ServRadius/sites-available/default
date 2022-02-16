@@ -1,0 +1,150 @@
+######################################################################
+#
+#	As of 2.0.0, FreeRADIUS supports virtual hosts using the
+#
+
+server default {
+listen {
+	type = auth
+	ipaddr = *
+	port = 0
+	limit {
+	      #  Limit the number of simultaneous TCP connections to the socket
+	      max_connections = 16
+	      lifetime = 0
+	      idle_timeout = 30
+	}
+}
+listen {
+	ipaddr = *
+	port = 0
+	type = acct
+	limit {
+	}
+}
+
+# IPv6 versions of the above - read their full config to understand options
+listen {
+	type = auth
+	ipv6addr = ::	# any.  ::1 == localhost
+	port = 0
+	limit {
+	      max_connections = 16
+	      lifetime = 0
+	      idle_timeout = 30
+	}
+}
+
+listen {
+	ipv6addr = ::
+	port = 0
+	type = acct
+	limit {
+	}
+}
+
+#  Authorization. First preprocess (hints and huntgroups files),
+authorize {
+	filter_username
+	preprocess
+	chap
+	mschap
+	digest
+	eap {
+		ok = return
+	}
+	files
+	#  See "Authorization Queries" in mods-available/sql
+	-sql
+	#  The ldap module reads passwords from the LDAP database.
+	#JCRequena, hay que quitar el - de -ldap
+	ldap
+	expiration
+	logintime
+	pap
+}
+authenticate {
+	Auth-Type PAP {
+		pap
+	}
+	Auth-Type CHAP {
+		chap
+	}
+	Auth-Type MS-CHAP {
+		mschap
+	}
+	mschap
+	digest
+	#JCRequena - Habilitar la autenticación LDAP. Descomentamos las líneas
+	Auth-Type LDAP {
+		ldap
+	}
+	#
+	#  Allow EAP authentication.
+	eap
+}
+
+#
+#  Pre-accounting.  Decide which accounting type to use.
+#
+preacct {
+	preprocess
+	acct_unique
+	suffix
+	files
+}
+
+#
+#  Accounting.  Log the accounting data.
+#
+accounting {
+	detail
+	unix
+	#  See "Accounting queries" in mods-available/sql
+	-sql
+	exec
+}
+
+
+#  Session database, used for checking Simultaneous-Use. Either the radutmp
+session {
+}
+
+#  Post-Authentication
+#  Once we KNOW that the user has been authenticated, there are
+#  additional steps we can take.
+post-auth {
+	if (session-state:User-Name && reply:User-Name && request:User-Name && (reply:User-Name == request:User-Name)) {
+		update reply {
+			&User-Name !* ANY
+		}
+	}
+	update {
+		&reply: += &session-state:
+	}
+	#  See "Authentication Logging Queries" in mods-available/sql
+	-sql
+	# For Exec-Program and Exec-Program-Wait
+	exec
+
+	Post-Auth-Type REJECT {
+		# log failed authentications in SQL, too.
+		-sql
+		attr_filter.access_reject
+
+		# Insert EAP-Failure message if the request was
+		# rejected by policy instead of because of an
+		# authentication failure
+		eap
+		#  Remove reply message if the response contains an EAP-Message
+		remove_reply_message_if_eap
+	}
+	}
+}
+
+pre-proxy {
+}
+post-proxy {
+	eap
+}
+}
