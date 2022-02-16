@@ -1,0 +1,148 @@
+##  eap.conf -- Configuration for EAP types (PEAP, TTLS, etc.)
+
+eap {
+	default_eap_type = md5
+	timer_expire = 60
+	ignore_unknown_eap_types = no
+	cisco_accounting_username_bug = no
+	#  Help prevent DoS attacks by limiting the number of
+	#  sessions that the server is tracking.  For simplicity,
+	#  this is taken from the "max_requests" directive in
+	#  radiusd.conf.
+	#
+	max_sessions = ${max_requests}
+
+	############################################################
+	#
+	#  Supported EAP-types
+	#
+	#  EAP-MD5
+	#
+	#  We do NOT recommend using EAP-MD5 authentication
+	#  for wireless connections.  It is insecure, and does
+	#  not provide for dynamic WEP keys.
+	#
+	md5 {
+	}
+	#  Cisco LEAP
+	#
+	#  We do not recommend using LEAP in new deployments.  
+	leap {
+	}
+	#  EAP-GTC -- Generic Token Card
+	#
+	#  Currently, this is only permitted inside of EAP-TTLS,
+	#  or EAP-PEAP.  The module "challenges" the user with
+	gtc {
+		auth_type = PAP
+	}
+	#  Common TLS configuration for TLS-based EAP types
+	#  ------------------------------------------------
+	#
+	#  See raddb/certs/README for additional comments
+	#  on certificates.
+	#
+	#  If OpenSSL was not found at the time the server was
+	#  built, the "tls", "ttls", and "peap" sections will
+	#  be ignored.
+	tls-config tls-common {
+		private_key_password = whatever
+		private_key_file = /etc/ssl/private/ssl-cert-snakeoil.key
+		#JCRequena:Fichero a distribuir a los clientes
+    certificate_file = /etc/ssl/certs/ssl-cert-snakeoil.pem
+
+		#  Trusted Root CA list
+		ca_file = /etc/ssl/certs/ca-certificates.crt
+		dh_file = ${certdir}/dh
+		ca_path = ${cadir}
+		cipher_list = "DEFAULT"
+		cipher_server_preference = no
+		disable_tlsv1_1 = yes
+		disable_tlsv1 = yes
+
+		#  Set min / max TLS version.
+		#  Allowed values are "1.0", "1.1", "1.2", and "1.3".
+		#
+		#  Note that the server WILL NOT permit negotiation of
+		#  TLS 1.3.  The EAP-TLS standards for TLS 1.3 are NOT
+		#  finished.  It is therefore impossible for the server
+		#  to negotiate EAP-TLS correctly with TLS 1.3.
+		tls_min_version = "1.2"
+		tls_max_version = "1.2"
+
+		#  Elliptical cryptography configuration
+		ecdh_curve = "prime256v1"
+		cache {
+			enable = no
+			lifetime = 24 # hours
+			store {
+				Tunnel-Private-Group-Id
+			}
+		}
+		verify {
+		}
+
+		#  OCSP Configuration
+		#
+		#  Certificates can be verified against an OCSP
+		ocsp {
+			enable = no
+			override_cert_url = yes
+			url = "http://127.0.0.1/ocsp/"
+		}
+	}
+	#  EAP-TLS
+	#
+	#  As of Version 3.0, the TLS configuration for TLS-based
+	#  EAP types is above in the "tls-config" section.
+	#
+	tls {
+		#  Point to the common TLS configuration
+		#
+		tls = tls-common
+	}
+
+	#  EAP-TTLS -- Tunneled TLS
+	#
+	#  The TTLS module implements the EAP-TTLS protocol,
+	#  which can be described as EAP inside of Diameter,
+	#  inside of TLS, inside of EAP, inside of RADIUS...
+	#
+	#  Surprisingly, it works quite well.
+	#
+	ttls {
+		tls = tls-common
+		default_eap_type = md5
+		copy_request_to_tunnel = no
+		use_tunneled_reply = no
+		virtual_server = "inner-tunnel"
+	}
+	#  EAP-PEAP
+	#
+	##################################################
+	#
+	#  !!!!! WARNINGS for Windows compatibility  !!!!!
+	#
+	##################################################
+
+	#  The tunneled EAP session needs a default EAP type
+	#  which is separate from the one for the non-tunneled
+	#  EAP module.  Inside of the TLS/PEAP tunnel, we
+	#  recommend using EAP-MS-CHAPv2.
+	#
+	peap {
+		tls = tls-common
+		default_eap_type = mschapv2
+		copy_request_to_tunnel = no
+		use_tunneled_reply = no
+		virtual_server = "inner-tunnel"
+	}
+	#  EAP-MSCHAPv2
+	#  This module is the *Microsoft* implementation of MS-CHAPv2
+	#  in EAP.  There is another (incompatible) implementation
+	#  of MS-CHAPv2 in EAP by Cisco, which FreeRADIUS does not
+	#  currently support.
+	#
+	mschapv2 {
+	}
+}
