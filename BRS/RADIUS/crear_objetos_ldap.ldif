@@ -28,6 +28,7 @@ displayName: Usuario 02 Informática
 givenName: Informática
 mail: user01@ciber.local
 userPassword: {SSHA}0/hPk9iPBJQJxuFmM53j+YhQUuSvTzRt
+dialupAccess: yes
 
 dn: uid=user03,ou=depInformatica,dc=ciber,dc=local
 objectClass: inetOrgPerson
@@ -39,6 +40,7 @@ displayName: Informática User03
 givenName: Informática
 mail: user03@ciber.local
 userPassword: {SSHA}0/hPk9iPBJQJxuFmM53j+YhQUuSvTzRt
+dialupAccess: yes
 
 dn: uid=user04,ou=depInformatica,dc=ciber,dc=local
 objectClass: inetOrgPerson
@@ -50,6 +52,7 @@ displayName: Usuarios 04 Informática
 givenName: Informática
 mail: user04@ciber.local
 userPassword: {SSHA}0/hPk9iPBJQJxuFmM53j+YhQUuSvTzRt
+dialupAccess: yes
 
 #Create global group
 dn: cn=GGProgramacion,ou=grupos,ou=depInformatica,dc=ciber,dc=local
