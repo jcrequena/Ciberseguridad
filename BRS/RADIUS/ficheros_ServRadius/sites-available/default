@@ -57,8 +57,7 @@ authorize {
 	#  See "Authorization Queries" in mods-available/sql
 	-sql
 	#  The ldap module reads passwords from the LDAP database.
-	#JCRequena, hay que quitar el - de -ldap
-	ldap
+	-ldap
 	expiration
 	logintime
 	pap
