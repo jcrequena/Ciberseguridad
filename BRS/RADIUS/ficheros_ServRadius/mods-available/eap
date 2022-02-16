@@ -1,7 +1,7 @@
 ##  eap.conf -- Configuration for EAP types (PEAP, TTLS, etc.)
 
 eap {
-	default_eap_type = md5
+	default_eap_type = peap
 	timer_expire = 60
 	ignore_unknown_eap_types = no
 	cisco_accounting_username_bug = no
@@ -49,8 +49,7 @@ eap {
 		private_key_password = whatever
 		private_key_file = /etc/ssl/private/ssl-cert-snakeoil.key
 		#JCRequena:Fichero a distribuir a los clientes
-    certificate_file = /etc/ssl/certs/ssl-cert-snakeoil.pem
-
+    		certificate_file = /etc/ssl/certs/ssl-cert-snakeoil.pem
 		#  Trusted Root CA list
 		ca_file = /etc/ssl/certs/ca-certificates.crt
 		dh_file = ${certdir}/dh
@@ -132,7 +131,7 @@ eap {
 	#
 	peap {
 		tls = tls-common
-		default_eap_type = mschapv2
+		default_eap_type = gtc
 		copy_request_to_tunnel = no
 		use_tunneled_reply = no
 		virtual_server = "inner-tunnel"
