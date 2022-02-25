@@ -1,6 +1,23 @@
+ #Ip inicial
+ ip address add address=192.168.0.2/24 interface=ether1 disabled=no
+ ip route add gateway=192.168.0.1 disabled=no
+ ip dns set servers=8.8.8.8,8.8.4.4
 #Crear interfaces
-
-
+#red de usaurios hotspot
+ip address add interface=ether2 address=192.168.11.1 netmask=255.255.255.0 
+network=192.168.0.11.0 disabled=no
+#Red interna - servidores
+ip address add interface=ether3 address=192.168.10.1 netmask=255.255.255.0 
+network=192.168.0.10.0 disabled=no
+#
+#Servidor DHCP en la red de usuarios
+#
+#crear pool
+ip pool add name=hotspot ranges=192.168.11.2-192.168.11.254
+#dchp
+ip dhcp-server add interface=ether2 address-pool=hotspot name=dhcp-hotspot
+#red en dhcp
+ip dhcp-server add interface=ether2 address-pool=hotspot name=dhcp-hotspot
 
 #
 #Certificados. Crear un certificado para que el acceso al hotspot sea por https
@@ -13,3 +30,20 @@ certificate sign LocalCA
 certificate add name=cert-Hotspot common-name=192.168.11.1 country=SP state=Castellon locality=Castellon organization=IESCaminas trusted=yes
 certificate sign certHotspot ca=LocalCA 
 certificate set trusted=yes certHotspot
+
+
+#Configurar el Hotspot
+ip hotspot setup
+#Modificar el perfil del servidor Hotspot
+ip hotspot profile set hsprof1 login-by=https name=hsprofIESCaminas
+#Modificar el nombre del servidor Hotspot
+ip hotspot set hotspot1 name=hotspotIESCaminas
+
+#
+#Verificaciones
+#
+certificate print detail
+ip hotspot profile print
+ip hotspot print detail
+ip hotspot user print detail
+
