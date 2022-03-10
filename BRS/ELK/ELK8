@@ -1,0 +1,20 @@
+#Referencia: https://kifarunix.com/install-elk-stack-8-x-on-ubuntu/
+#Set system Hostname
+hostnamectl set-hostname orion.ciber.local
+
+#Update DNS records locally on hosts file if you dont have DNS server;
+
+echo "192.168.0.33 orion.ciber.local" >> /etc/hosts
+
+#Install Elastic Stack 8.x Repositories
+#Install Elastic stack 8.x repository signing key.
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+#Install the Elastic Stack 8.x repository
+echo "deb https://artifacts.elastic.co/packages/8.x/apt stable main" > /etc/apt/sources.list.d/elastic-8.x.list
+
+#Run system update
+apt update
+#Install ELK Stack 8.x on Ubuntu
+#Elastic stack is made up of various opensource tools; Elasticsearch, Logstash, Kibana, and Beats.
+
+
