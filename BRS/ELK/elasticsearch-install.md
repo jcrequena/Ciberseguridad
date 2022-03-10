@@ -1,1 +1,47 @@
-d
+root@orion:~# apt install elasticsearch
+Leyendo lista de paquetes... Hecho
+Creando árbol de dependencias       
+Leyendo la información de estado... Hecho
+Se instalarán los siguientes paquetes NUEVOS:
+  elasticsearch
+0 actualizados, 1 nuevos se instalarán, 0 para eliminar y 0 no actualizados.
+Se necesita descargar 516 MB de archivos.
+Se utilizarán 1.100 MB de espacio de disco adicional después de esta operación.
+Des:1 https://artifacts.elastic.co/packages/8.x/apt stable/main amd64 elasticsearch amd64 8.1.0 [516 MB]
+Descargados 516 MB en 11min 46s (731 kB/s)                                                                                                               
+Seleccionando el paquete elasticsearch previamente no seleccionado.
+(Leyendo la base de datos ... 71709 ficheros o directorios instalados actualmente.)
+Preparando para desempaquetar .../elasticsearch_8.1.0_amd64.deb ...
+Creating elasticsearch group... OK
+Creating elasticsearch user... OK
+Desempaquetando elasticsearch (8.1.0) ...
+Configurando elasticsearch (8.1.0) ...
+--------------------------- Security autoconfiguration information ------------------------------
+
+Authentication and authorization are enabled.
+TLS for the transport and HTTP layers is enabled and configured.
+
+The generated password for the elastic built-in superuser is : 1_TJPzlqsEilZl7wyzKl
+
+If this node should join an existing cluster, you can reconfigure this with
+'/usr/share/elasticsearch/bin/elasticsearch-reconfigure-node --enrollment-token <token-here>'
+after creating an enrollment token on your existing cluster.
+
+You can complete the following actions at any time:
+
+Reset the password of the elastic built-in superuser with 
+'/usr/share/elasticsearch/bin/elasticsearch-reset-password -u elastic'.
+
+Generate an enrollment token for Kibana instances with 
+ '/usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token -s kibana'.
+
+Generate an enrollment token for Elasticsearch nodes with 
+'/usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token -s node'.
+
+-------------------------------------------------------------------------------------------------
+### NOT starting on installation, please execute the following statements to configure elasticsearch service to start automatically using systemd
+ sudo systemctl daemon-reload
+ sudo systemctl enable elasticsearch.service
+### You can start elasticsearch service by executing
+ sudo systemctl start elasticsearch.service
+root@orion:~# 
