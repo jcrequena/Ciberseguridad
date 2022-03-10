@@ -6,15 +6,59 @@ hostnamectl set-hostname orion.ciber.local
 
 echo "192.168.0.33 orion.ciber.local" >> /etc/hosts
 
-#Install Elastic Stack 8.x Repositories
-#Install Elastic stack 8.x repository signing key.
+#Instalar los repositorios de Elastic Stack 8.x
+#Instalar la clave de firma del repositorio de Elastic stack 8.x.
 wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
-#Install the Elastic Stack 8.x repository
+#Instalar el repositorio de Elastic Stack 8.x
 echo "deb https://artifacts.elastic.co/packages/8.x/apt stable main" > /etc/apt/sources.list.d/elastic-8.x.list
 
-#Run system update
+#Actualizar los repositorios
 apt update
-#Install ELK Stack 8.x on Ubuntu
-#Elastic stack is made up of various opensource tools; Elasticsearch, Logstash, Kibana, and Beats.
+#Instalar ELK Stack 8.x en Ubuntu
+
+#Elastic Stack se compone de varias herramientas de código abierto: Elasticsearch, Logstash, Kibana, and Beats.
+#
+#Instalación de Elasticsearch 8.0 en Ubuntu
+#
+apt install elasticsearch -y
+#Durante la instalación, las funciones de seguridad estarán habilitadas de manera predeterminada.
+#La autenticación y la autorización están habilitadas.
+#TLS para las capas de transporte y HTTP está habilitado y configurado.
+#Se crea la cuenta de superusuario de Elastic (elastic) y su contraseña.
+
+#Configurar Elasticsearch 8.0 en Ubuntu
+#Dado que se está ejecutando un clúster de un solo nodo de configuración básica, se utilizará la configuración predeterminada.
+
+#Si revisa el archivo de configuración de Elasticsearch, /etc/elasticsearch/elasticsearch.yml, se puede ver la configuración de seguridad habilitada
+#----------------------- BEGIN SECURITY AUTO CONFIGURATION -----------------------
+#
+# The following settings, TLS certificates, and keys have been automatically      
+# generated to configure Elasticsearch security features on 16-02-2022 12:17:24
+#
+# --------------------------------------------------------------------------------
+# Enable security features
+xpack.security.enabled: true
+xpack.security.enrollment.enabled: true
+# Enable encryption for HTTP API client connections, such as Kibana, Logstash, and Agents
+xpack.security.http.ssl:
+  enabled: true
+  keystore.path: certs/http.p12
+# Enable encryption and mutual authentication between cluster nodes
+xpack.security.transport.ssl:
+  enabled: true
+  verification_mode: certificate
+  keystore.path: certs/transport.p12
+  truststore.path: certs/transport.p12
+# Create a new cluster with the current node only
+# Additional nodes can still join the cluster later
+cluster.initial_master_nodes: ["orion.ciber.local"]
+# Allow HTTP API connections from localhost and local networks
+# Connections are encrypted and require user authentication
+http.host: [_local_, _site_]
+#----------------------- END SECURITY AUTO CONFIGURATION -------------------------
+
+#Sin líneas de comentarios, así es como se ve la configuración predeterminada de Elasticsearch 8.0
+grep -Ev '^#|^$' /etc/elasticsearch/elasticsearch.yml
+
 
 
