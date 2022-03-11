@@ -1,35 +1,41 @@
 #Referencia: https://kifarunix.com/install-elk-stack-8-x-on-ubuntu/
 #Set system Hostname
-hostnamectl set-hostname orion.ciber.local
+root@orion:~#hostnamectl set-hostname orion.ciber.local
 
 #Update DNS records locally on hosts file if you dont have DNS server;
 
-echo "192.168.0.33 orion.ciber.local" >> /etc/hosts
+root@orion:~#echo "192.168.0.33 orion.ciber.local" >> /etc/hosts
 
 #Instalar los repositorios de Elastic Stack 8.x
 #Instalar la clave de firma del repositorio de Elastic stack 8.x.
-wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+root@orion:~#wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
 #Instalar el repositorio de Elastic Stack 8.x
 echo "deb https://artifacts.elastic.co/packages/8.x/apt stable main" > /etc/apt/sources.list.d/elastic-8.x.list
 
 #Actualizar los repositorios
-apt update
+root@orion:~#apt update
 #Instalar ELK Stack 8.x en Ubuntu
 
 #Elastic Stack se compone de varias herramientas de código abierto: Elasticsearch, Logstash, Kibana, and Beats.
 #
 #Instalación de Elasticsearch 8.0 en Ubuntu
 #
-apt install elasticsearch -y
+root@orion:~#apt install elasticsearch -y
 #Durante la instalación, las funciones de seguridad estarán habilitadas de manera predeterminada.
 #La autenticación y la autorización están habilitadas.
 #TLS para las capas de transporte y HTTP está habilitado y configurado.
 #Se crea la cuenta de superusuario de Elastic (elastic) y su contraseña.
 
+#Cambio de credenciales. Al ejecutar el comando, se informa que se va a relizar el reseteo del password y se solicita que se confirme la operación. Para continuar
+hay que pulsar 'y'. A continuación, se solicita la nueva contraseña dos veces.
+root@orion:/usr/share/elasticsearch/bin#./elasticsearch-reset-password --url "https://orion.ciber.local:9200" --username elastic -i
+#Referencia:https://www.elastic.co/guide/en/elasticsearch/reference/current/reset-password.html
+
 #Configurar Elasticsearch 8.0 en Ubuntu
 #Dado que se está ejecutando un clúster de un solo nodo de configuración básica, se utilizará la configuración predeterminada.
-
 #Si revisa el archivo de configuración de Elasticsearch, /etc/elasticsearch/elasticsearch.yml, se puede ver la configuración de seguridad habilitada
+root@orion:~#nano /etc/elasticsearch/elasticsearch.yml
+
 #----------------------- BEGIN SECURITY AUTO CONFIGURATION -----------------------
 #
 # The following settings, TLS certificates, and keys have been automatically      
@@ -58,7 +64,72 @@ http.host: [_local_, _site_]
 #----------------------- END SECURITY AUTO CONFIGURATION -------------------------
 
 #Sin líneas de comentarios, así es como se ve la configuración predeterminada de Elasticsearch 8.0
-grep -Ev '^#|^$' /etc/elasticsearch/elasticsearch.yml
+root@orion:~#grep -Ev '^#|^$' /etc/elasticsearch/elasticsearch.yml
+#Salida
+#------------------------------
+path.data: /var/lib/elasticsearch
+path.logs: /var/log/elasticsearch
+xpack.security.enabled: true
+xpack.security.enrollment.enabled: true
+xpack.security.http.ssl:
+  enabled: true
+  keystore.path: certs/http.p12
+xpack.security.transport.ssl:
+  enabled: true
+  verification_mode: certificate
+  keystore.path: certs/transport.p12
+  truststore.path: certs/transport.p12
+cluster.initial_master_nodes: ["orion.ciber.local"]
+http.host: [_local_, _site_]
+#------------------------------
+#Ajustar la configuración de JVM de Elasticsearch
+#A continuación, hay que configuar el tamaño de almacenamiento dinámico de JVM a no más de la mitad del tamaño de la memoria establecida en la MV. 
+#En este caso, nuestro servidor de prueba tiene 4 GB de RAM y el tamaño del almacenamiento dinámico se establece en 1 G para los tamaños máximo y mínimo.
+root@orion:~#nano /etc/elasticsearch/jvm.options
+Se deja la configuración calculada por elasticsearch durante la instalación
+
+#Ejecutar Elasticsearch
+#A continuación, hay que iniciar y habilitar Elasticsearch para que se ejecute en el arranque del sistema.
+root@orion:~#systemctl daemon-reload
+root@orion:~#systemctl enable --now elasticsearch
+#Se verifica el estado a continuación:
+root@orion:~#systemctl status elasticsearch
+#También se puede verificar el estado usando el comando curl. Cuando se solicite la constraseña, hay que introducir la generada anteriormente
+#en la instalación de Elasticsearch
+root@orion:~#curl --cacert /etc/elasticsearch/certs/http_ca.crt -u elastic 'https://orion.ciber.local:9200'
+#Si todo ha ido bien, en la salida se obtendrá la siguiente información:
+#-------------------------------------------
+{
+  "name" : "orion.ciber.local",
+  "cluster_name" : "elasticsearch",
+  "cluster_uuid" : "JgRGKoHfRiCLp8nsN7TUVg",
+  "version" : {
+    "number" : "8.1.0",
+    "build_flavor" : "default",
+    "build_type" : "deb",
+    "build_hash" : "3700f7679f7d95e36da0b43762189bab189bc53a",
+    "build_date" : "2022-03-03T14:20:00.690422633Z",
+    "build_snapshot" : false,
+    "lucene_version" : "9.0.0",
+    "minimum_wire_compatibility_version" : "7.17.0",
+    "minimum_index_compatibility_version" : "7.0.0"
+  },
+  "tagline" : "You Know, for Search"
+}
+#------------------------------------------
+Otra opción es abrir el navegador y poner: https://192.168.0.33:9200/
+#Si todo ha ido bien, en la salida se obtendrá la siguiente información:
+#PONER CAPTURA
+#También se puede realizar una consulta sobre el consumo del nodo de ElasticSearch
+root@orion:~#curl --cacert /etc/elasticsearch/certs/http_ca.crt -u elastic 'https://orion.ciber.local:9200/_cat/nodes?v'
+#Si todo ha ido bien, en la salida se obtendrá la siguiente información:
+ip        heap.percent ram.percent cpu load_1m load_5m load_15m node.role   master name
+127.0.0.1           15          87   1    0.00    0.04     0.09 cdfhilmrstw *      orion.ciber.local
+#Referencia: https://www.elastic.co/es/blog/configuring-ssl-tls-and-https-to-secure-elasticsearch-kibana-beats-and-logstash
+
+#A continuación, se verifican los puertos abiertos
+root@orion:~#ss -altnp | grep 9200
+
 
 
 
