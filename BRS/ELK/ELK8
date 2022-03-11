@@ -130,6 +130,15 @@ ip        heap.percent ram.percent cpu load_1m load_5m load_15m node.role   mast
 #A continuación, se verifican los puertos abiertos
 root@orion:~#ss -altnp | grep 9200
 
+#Instalar Kibana 8.0
+#Como ya se configuraron anteriormente los repositorios de Elastic, simplemente para instalar Kibana 8.0 hay que ejecutar el comando siguiente:
+root@orion:~#apt install kibana
+#Kibana está configurado para ejecutarse en localhost:5601 de forma predeterminada. 
+#Para permitir el acceso externo, hay que editar el archivo de configuración y reemplazar el valor de server.host con una IP de interfaz.
+root@orion:~#nano /etc/kibana/kibana.yml
+server.host: "192.168.0.33"
+#A continuación, hay que generar un token de inscripción para Kibana usando el siguiente comando:
+root@orion:/#/usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token -s kibana
 
 
 
