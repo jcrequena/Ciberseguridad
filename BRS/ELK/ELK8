@@ -26,10 +26,6 @@ root@orion:~#apt install elasticsearch -y
 #TLS para las capas de transporte y HTTP está habilitado y configurado.
 #Se crea la cuenta de superusuario de Elastic (elastic) y su contraseña.
 
-#Cambio de credenciales. Al ejecutar el comando, se informa que se va a relizar el reseteo del password y se solicita que se confirme la operación. Para continuar
-hay que pulsar 'y'. A continuación, se solicita la nueva contraseña dos veces.
-root@orion:/usr/share/elasticsearch/bin#./elasticsearch-reset-password --url "https://orion.ciber.local:9200" --username elastic -i
-#Referencia:https://www.elastic.co/guide/en/elasticsearch/reference/current/reset-password.html
 
 #Configurar Elasticsearch 8.0 en Ubuntu
 #Dado que se está ejecutando un clúster de un solo nodo de configuración básica, se utilizará la configuración predeterminada.
@@ -129,6 +125,11 @@ ip        heap.percent ram.percent cpu load_1m load_5m load_15m node.role   mast
 
 #A continuación, se verifican los puertos abiertos
 root@orion:~#ss -altnp | grep 9200
+
+#Cambio de credenciales. Al ejecutar el comando, se informa que se va a relizar el reseteo del password y se solicita que se confirme la operación. Para continuar
+hay que pulsar 'y'. A continuación, se solicita la nueva contraseña dos veces.
+root@orion:/usr/share/elasticsearch/bin#./elasticsearch-reset-password --url "https://orion.ciber.local:9200" --username elastic -i
+#Referencia:https://www.elastic.co/guide/en/elasticsearch/reference/current/reset-password.html
 
 #Instalar Kibana 8.0
 #Como ya se configuraron anteriormente los repositorios de Elastic, simplemente para instalar Kibana 8.0 hay que ejecutar el comando siguiente:
