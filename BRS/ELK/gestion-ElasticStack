@@ -13,6 +13,9 @@ ssh_auth-2022.03.20                                           0 r UNASSIGNED CLU
 ssh_auth-2022.03.19                                           0 r UNASSIGNED CLUSTER_RECOVERED 
 filebeat-8.1.0-2022.03.19                                     0 r UNASSIGNED CLUSTER_RECOVERED 
 
+# Listar detalles útiles sobre por qué ciertos fragmentos en su clúster permanecen sin asignar:
+
+curl -XGET --cacert /etc/elasticsearch/certs/http_ca.crt -u elastic 'https://elastics-master01:9200/_cluster/allocation/explain?pretty'
 
 # Eliminar un índice
 curl -XDELETE --cacert /etc/elasticsearch/certs/http_ca.crt -u elastic 'https://elastics-master01:9200/ssh_auth-2022.03.19'
@@ -26,3 +29,4 @@ curl -X GET --cacert /etc/elasticsearch/certs/http_ca.crt -u elastic 'https://el
 
 # Obtener información del cluster
 curl -XGET --cacert /etc/elasticsearch/certs/http_ca.crt -u elastic 'https://elastics-master01:9200'
+
