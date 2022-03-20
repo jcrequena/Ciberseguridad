@@ -1,8 +1,8 @@
-#Verificar los fragmentos que no están asignados por alguna razón (grep -i unassigned)
+# Verificar los fragmentos que no están asignados por alguna razón (grep -i unassigned)
 curl -XGET --cacert /etc/elasticsearch/certs/http_ca.crt \
 -u elastic 'https://elastics-master01:9200/_cat/shards?h=index,shard,prirep,state,unassigned.reason,node' | grep -i unassigned
 
-#Salida:
+# Salida:
 Enter host password for user 'elastic':
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
@@ -15,3 +15,13 @@ filebeat-8.1.0-2022.03.19                                     0 r UNASSIGNED CLU
 
 # Eliminar un índice
 curl -XDELETE --cacert /etc/elasticsearch/certs/http_ca.crt -u elastic 'https://elastics-master01:9200/ssh_auth-2022.03.19'
+# donde el índice es: ssh_auth-2022.03.19
+
+# Veririficar el estado de salud del cluster
+curl -XGET --cacert /etc/elasticsearch/certs/http_ca.crt -u elastic 'https://elastics-master01:9200/_cluster/health?pretty'
+
+# Listar los índices
+curl -X GET --cacert /etc/elasticsearch/certs/http_ca.crt -u elastic 'https://elastics-master01:9200/_cat/indices?v'
+
+# Obtener información del cluster
+curl -XGET --cacert /etc/elasticsearch/certs/http_ca.crt -u elastic 'https://elastics-master01:9200'
