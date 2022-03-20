@@ -1,0 +1,17 @@
+#Verificar los fragmentos que no están asignados por alguna razón (grep -i unassigned)
+curl -XGET --cacert /etc/elasticsearch/certs/http_ca.crt \
+-u elastic 'https://elastics-master01:9200/_cat/shards?h=index,shard,prirep,state,unassigned.reason,node' | grep -i unassigned
+
+#Salida:
+Enter host password for user 'elastic':
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  2531  100  2531    0     0  23220      0 --:--:-- --:--:-- --:--:-- 23220
+.kibana_task_manager_8.1.0_001                                0 p UNASSIGNED CLUSTER_RECOVERED 
+ssh_auth-2022.03.20                                           0 r UNASSIGNED CLUSTER_RECOVERED 
+ssh_auth-2022.03.19                                           0 r UNASSIGNED CLUSTER_RECOVERED 
+filebeat-8.1.0-2022.03.19                                     0 r UNASSIGNED CLUSTER_RECOVERED 
+
+
+# Eliminar un índice
+curl -XDELETE --cacert /etc/elasticsearch/certs/http_ca.crt -u elastic 'https://elastics-master01:9200/ssh_auth-2022.03.19'
