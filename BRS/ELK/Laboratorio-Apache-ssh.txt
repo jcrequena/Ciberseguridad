@@ -1,1 +1,43 @@
-r
+# Logstash
+#01-input-beats.conf
+
+# 10-filter.conf
+filter {
+  # Module system 
+  if [event][module] == "system" {
+     if [fileset][name] == "auth" {
+        grok {
+           match => { "message" => "%{SYSLOGTIMESTAMP:timestamp}\s+%{IPORHOST:dst_host}\s+%{WORD:syslog_program}\[\d+\]:\s+(?<status>\w+\s+password)\s+for\s+%{USER:auth_user}\s+from\s+%{SYSLOGHOST:src_host}.*" }
+           add_field => { "activity" => "SSH Logins" }
+           add_tag => "linux_auth"
+        }
+        if "_grokparsefailure" in [tags] {
+          grok {
+             remove_tag => [ "_grokparsefailure" ]
+             match => { "message" => "%{SYSLOGTIMESTAMP:timestamp}\s+%{IPORHOST:dst_host}\s+%{WORD:syslog_program}\[\d+\]:\s+(?<status>\w+\s+password)\s+for\s+invalid\s+user\s+%{USER:auth_user}\s+from\s+%{SYSLOGHOST:src_host}.*" }
+             add_tag => [ "ssh_brute_force_attack", "filter_sshd","correlation" ]
+             add_field => { "EventDesc" => "5710 SSHD Attempt to login using a non-existent user" }
+             add_field => { "event_id" => "5710" }
+          }
+          if "_grokparsefailure" in [tags] { drop {} }
+        }
+     } 
+    #else if [fileset][name] == "syslog" { drop {} }
+  }
+  # module apache - Configura los filtros de datos y fechas
+  else if [event][module] == "apache" {
+     grok {
+       match => { "message" => "%{COMBINEDAPACHELOG}" }
+       add_tag => "apache2-server"
+       add_field => { "logtype" => "apache-access-Web-JCRequena" }
+     }
+     if "_grokparsefailure" in [tags] { drop {} }
+     date {
+       match => [ "timestamp" , "dd/MMM/yyyy:HH:mm:ss Z" ]
+     }
+  }
+  else {  drop {} }
+}
+ 
+ # 20-output.conf
+ 
