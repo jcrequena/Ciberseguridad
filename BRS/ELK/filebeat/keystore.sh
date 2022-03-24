@@ -1,9 +1,9 @@
 # Crear el almacén de claves
 filebeat --strict.perms=false keystore create --force
-# Crear clave con el password del usuario de Elasticsearc
+# Añadir al almacén la clave con el password del usuario de Elasticsearc
 echo "Añadiendo E_PASS al almacén de claves..."
 filebeat keystore add E_PASS
-# Crear clave con el nombre del usuario de Elasticsearc
+# Añadir al almacén la clave con el nombre del usuario de Elasticsearc
 echo "Añadiendo E_USER al almacén de claves..."
 filebeat keystore add E_USER
 # Se lista el almacén para comprobar que se han creado bien
