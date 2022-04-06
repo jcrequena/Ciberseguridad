@@ -1,0 +1,1 @@
+alert tcp any any -> $HOME_NET 80 (flags: S; msg:"Posible ataque DoS - Type : SYNflood"; flow:stateless; sid:1000001; detection_filter:track by_dst, count 20, seconds 10;)
