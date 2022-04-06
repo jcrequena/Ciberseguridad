@@ -1873,6 +1873,7 @@ default-rule-path: /var/lib/suricata/rules
 
 rule-files:
   - suricata.rules
+  - /etc/suricata/rules/ciber.rules
 
 ##
 ## Auxiliary configuration files.
