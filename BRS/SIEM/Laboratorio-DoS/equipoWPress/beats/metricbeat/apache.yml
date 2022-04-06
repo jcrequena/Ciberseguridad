@@ -5,4 +5,3 @@
     - status
   period: 10s
   hosts: ["http://127.0.0.1"]
-  server_status_path: "server-status"
