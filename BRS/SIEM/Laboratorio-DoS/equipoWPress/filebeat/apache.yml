@@ -1,10 +1,19 @@
 # Module: apache
-# Docs: https://www.elastic.co/guide/en/beats/metricbeat/master/metricbeat-module-apache.html
+# Docs: https://www.elastic.co/guide/en/beats/filebeat/master/filebeat-module-apache.html
 
 - module: apache
-  #metricsets:
-  #  - status
-  period: 10s
-  hosts: ["http://127.0.0.1"]
-  #username: "user"
-  #password: "secret"
+  # Access logs
+  access:
+    enabled: true
+
+    # Set custom paths for the log files. If left empty,
+    # Filebeat will choose the paths depending on your OS.
+    #var.paths:
+
+  # Error logs
+  error:
+    enabled: false
+
+    # Set custom paths for the log files. If left empty,
+    # Filebeat will choose the paths depending on your OS.
+    #var.paths:
