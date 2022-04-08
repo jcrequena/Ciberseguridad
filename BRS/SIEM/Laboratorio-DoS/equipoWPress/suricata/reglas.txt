@@ -1,0 +1,8 @@
+#Se alerta con un mensaje «Outbound ICMP detected» cada vez que se localice un paquete ICMP hacia el exterior.
+alert icmp $HOME_NET any -> $EXTERNAL_NET any (msg: "Outbound ICMP detected"; sid:1; rev:1;)
+
+#Se alerta con un mensaje «Inbound ICMP detected» cada vez que se localicec un paquete ICMP hacia el interior.
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg: "Inbound ICMP detected"; sid:2; rev:1;)
+Notas:
+sid: Se le da un identificador numérico a la regla. Es buena práctica darle uno a cada regla.
+rev: Se le da un valor de revisión a la regla (si se cambian constantemente viene bien tener una gestión de las reglas).
