@@ -70,21 +70,27 @@ foreach($linea in $fichero)
 	# Para ello, importamos una utilidad (Set-OSCLogonHours) que nos permite establecer el horario
 	#
 	Import-Module C:\Scripts\LogonHours\SetADUserLogonTime.psm1
-	Set-OSCLogonHours -SamAccountName $nameShort -DayofWeek Monday,Tuesday,Wednesday,Thursday,Friday -From 8AM -To 6PM
-	
+	Set-OSCLogonHours -SamAccountName $nameShort -DayofWeek Monday,Tuesday,Wednesday,Thursday,Friday -From 8AM -To 6PM	
 }
+#Establecer política de contraseñas (ejemplo: Longitud mínima 12, complejidad de la contraseña sí)
+#En este ejemplo se crea una directiva habilitada con las siguientes propiedades:
+#Requiere una contraseña compleja
+#Al menos 12 caracteres de longitud
+#Requiere una contraseña
+#fuente: https://learn.microsoft.com/es-es/powershell/module/configurationmanager/new-cmfdvpassphrasepolicy?view=sccm-ps
+New-CMFDVPassPhrasePolicy -PolicyState Enabled -PasswordComplexity Require -MinimumLength 12 -RequirePassword
 
 # A continuación, las propiedades de New-ADUser que se han utilizado son:
-SamAccountName: nombre de la cuenta SAM para compatibilidad con equipos anteriores a Windows 2000.
-UserPrincipalName: Nombre opcional que puede ser más corto y fácil de recordar que el DN (Distinguished Name) y que puede ser utilizado por el sistema.
-Name: Nombre de la cuenta de usuario.
-Surname: Apellidos del usuario.
-DisplayName: Nombre del usuario que se mostrará cuando inicie sesión en un equipo.
-GivenName: Nombre de pila.
-Description: Descripción de la cuenta de usuario.
-EmailAddress: Dirección de correo electrónico.
-AccountPassword: Contraseña encriptada.
-Enabled: Cuenta habilitada ($true) o deshabilitada ($false).
-CannotChangePassword: El usuario no puede cambiar la contraseña (como antes, tiene dos valores: $true y $false).
-ChangePasswordAtLogon: Si su valor es $true obliga al usuario a cambiar la contraseña cuando vuelva a iniciar sesión.
-PasswordNotRequired: Permite que el usuario no tenga contraseña.
+#SamAccountName: nombre de la cuenta SAM para compatibilidad con equipos anteriores a Windows 2000.
+#UserPrincipalName: Nombre opcional que puede ser más corto y fácil de recordar que el DN (Distinguished Name) y que puede ser utilizado por el sistema.
+#Name: Nombre de la cuenta de usuario.
+#Surname: Apellidos del usuario.
+#DisplayName: Nombre del usuario que se mostrará cuando inicie sesión en un equipo.
+#GivenName: Nombre de pila.
+#Description: Descripción de la cuenta de usuario.
+#EmailAddress: Dirección de correo electrónico.
+#AccountPassword: Contraseña encriptada.
+#Enabled: Cuenta habilitada ($true) o deshabilitada ($false).
+#CannotChangePassword: El usuario no puede cambiar la contraseña (como antes, tiene dos valores: $true y $false).
+#ChangePasswordAtLogon: Si su valor es $true obliga al usuario a cambiar la contraseña cuando vuelva a iniciar sesión.
+#PasswordNotRequired: Permite que el usuario no tenga contraseña.
