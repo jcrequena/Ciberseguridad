@@ -7,7 +7,7 @@
 #Se configura para que se bloquee si se falla al intento 3.
 #Duración del bloqueo 60 minutos
 #Ventana de bloqueo (tiempo en minutos antes de que se restablezca el contador de intentos fallidos de contraseña )
-#fuente: https://learn.microsoft.com/en-us/powershell/module/activedirectory/set-addefaultdomainpasswordpolicy?view=windowsserver2022-ps
+#fuente: https://learn.microsoft.com/en-us/powershell/module/activedirectory/set-addefaultdomainpasswordpolicy?view=windowsserver2019-ps
 
 
 Set-ADDefaultDomainPasswordPolicy -Identity brs.ciber -MinPasswordLength 12 -ComplexityEnabled $True -PasswordHistoryCount 5 -MaxPasswordAge 10.00:00:00 
