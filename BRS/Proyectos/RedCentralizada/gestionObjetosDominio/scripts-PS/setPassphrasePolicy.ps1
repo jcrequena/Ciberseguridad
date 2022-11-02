@@ -10,8 +10,12 @@
 #fuente: https://learn.microsoft.com/en-us/powershell/module/activedirectory/set-addefaultdomainpasswordpolicy?view=windowsserver2019-ps
 
 
-Set-ADDefaultDomainPasswordPolicy -Identity brs.ciber -MinPasswordLength 12 -ComplexityEnabled $True -PasswordHistoryCount 5 -MaxPasswordAge 10.00:00:00 
--LockoutThreshold 3 -LockoutDuration 00:60:00 -LockoutObservationWindow 00:60:00 -ReversibleEncryptionEnabled $False 
+Set-ADDefaultDomainPasswordPolicy -Identity ciber.local -MinPasswordLength 12 -ComplexityEnabled $True 
+                                  -PasswordHistoryCount 5 -MaxPasswordAge 10.00:00:00 -LockoutThreshold 3 
+                                  -LockoutDuration 0.0:30:0 -LockoutObservationWindow 0.0:30:0 -ReversibleEncryptionEnabled $False 
+#Para consultar la configuración de los parámetros establecidos
+Get-ADDefaultDomainPasswordPolicy
+
 
 
 #Bloqueo de cuentas con comando net
