@@ -26,4 +26,5 @@ Set-DNSClientServerAddress –InterfaceIndex (Get-NetAdapter).InterfaceIndex –
 Get-NetAdapterBinding -ComponentID ‘ms_tcpip6’ | Disable-NetAdapterBinding -ComponentID ‘ms_tcpip6’ -PassThru
 
 
-
+#Obtener SSID
+Get-LocalUser | Select-Object -First 1 -ExpandProperty SID | Write-Host
