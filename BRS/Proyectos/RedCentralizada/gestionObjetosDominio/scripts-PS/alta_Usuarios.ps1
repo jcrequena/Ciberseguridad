@@ -22,6 +22,8 @@ $fileUsersCsv=Read-Host "Introduce el fichero csv de los usuarios:"
 #Los campos del fichero csv están separados por el carácter ,
 #
 $fichero = import-csv -Path $fileUsersCsv -Delimiter : 
+
+#Fuente: https://learn.microsoft.com/en-us/powershell/module/activedirectory/new-aduser?view=windowsserver2019-ps
 						     
 foreach($linea in $fichero)
 {
