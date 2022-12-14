@@ -57,7 +57,7 @@ mail: user04@ciber.local
 userPassword: hPk9iPBJQJxuFmM53j+YhQUuSvTzRt
 
 #
-#Crear grupos globales y agregar usurios a los mismos
+#Crear grupos globales y agregar usuarios a los mismos
 #
 dn: cn=GGProgramacion,ou=grupos,ou=depInformatica,dc=ciber,dc=local
 objectClass: groupOfNames
