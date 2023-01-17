@@ -1,0 +1,51 @@
+Nombre de host:                            PERSEO
+Nombre del sistema operativo:              Microsoft Windows Server 2019 Datacenter Evaluation
+Versi¢n del sistema operativo:             10.0.17763 N/D Compilaci¢n 17763
+Fabricante del sistema operativo:          Microsoft Corporation
+Configuraci¢n del sistema operativo:       Controlador de dominio principal
+Tipo de compilaci¢n del sistema operativo: Multiprocessor Free
+Propiedad de:                              Usuario de Windows
+Organizaci¢n registrada:                   
+Id. del producto:                          00431-20000-00000-AA179
+Fecha de instalaci¢n original:             20/01/2022, 7:28:31
+Tiempo de arranque del sistema:            16/01/2023, 11:37:52
+Fabricante del sistema:                    innotek GmbH
+Modelo el sistema:                         VirtualBox
+Tipo de sistema:                           x64-based PC
+Procesador(es):                            1 Procesadores instalados.
+                                           [01]: Intel64 Family 6 Model 58 Stepping 9 GenuineIntel ~2492 Mhz
+Versi¢n del BIOS:                          innotek GmbH VirtualBox, 01/12/2006
+Directorio de Windows:                     C:\Windows
+Directorio de sistema:                     C:\Windows\system32
+Dispositivo de arranque:                   \Device\HarddiskVolume1
+Configuraci¢n regional del sistema:        es;Espa¤ol (internacional)
+Idioma de entrada:                         es;Espa¤ol (tradicional)
+Zona horaria:                              (UTC+01:00) Bruselas, Copenhague, Madrid, Par¡s
+Cantidad total de memoria f¡sica:          7.000 MB
+Memoria f¡sica disponible:                 4.191 MB
+Memoria virtual: tama¤o m ximo:            8.728 MB
+Memoria virtual: disponible:               5.950 MB
+Memoria virtual: en uso:                   2.778 MB
+Ubicaci¢n(es) de archivo de paginaci¢n:    C:\pagefile.sys
+Dominio:                                   ciber.local
+Servidor de inicio de sesi¢n:              \\PERSEO
+Revisi¢n(es):                              10 revisi¢n(es) instaladas.
+                                           [01]: KB5020866
+                                           [02]: KB4512577
+                                           [03]: KB4535680
+                                           [04]: KB4589208
+                                           [05]: KB5012170
+                                           [06]: KB5021237
+                                           [07]: KB5008287
+                                           [08]: KB5009642
+                                           [09]: KB5011574
+                                           [10]: KB5020374
+Tarjeta(s) de red:                         1 Tarjetas de interfaz de red instaladas.
+                                           [01]: Intel(R) PRO/1000 MT Desktop Adapter
+                                                 Nombre de conexi¢n: Ethernet
+                                                 DHCP habilitado:    S¡
+                                                 Servidor DHCP:      192.168.0.1
+                                                 Direcciones IP
+                                                 [01]: 192.168.0.39
+                                                 [02]: fe80::5297:5e9:31ec:f7d
+Requisitos Hyper-V:                        Se detect¢ un hipervisor. No se mostrar n las caracter¡sticas necesarias para Hyper-V.
