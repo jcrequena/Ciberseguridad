@@ -1,5 +1,7 @@
+#Variables globales
+$domain="dc=smr,dc=local"
 #
-#Funciones en la cabcera del script
+#Funciones en la cabecera del script
 #
 
 function Show-Menu
@@ -10,14 +12,77 @@ function Show-Menu
      Clear-Host
      Write-Host "================ $Titulo ================"
     
-     Write-Host "1: Opción '1' Acción 1."
-     Write-Host "2: Opción '2' Acción 2."
-     Write-Host "3: Opción '3' Acción 3."
+     Write-Host "1: Opción '1' Crear UOs."
+     Write-Host "2: Opción '2' Crear Grupos."
+     Write-Host "3: Opción '3' Crear Usuarios."
      Write-Host "Q: Opción 'Q' Salir."
 }
-#
-# Antes de insertar un objeto en AD, hay que comprobar que NO existe
-#
+function alta_UOs
+{
+     $ficheroCsvUO=Read-Host "Introduce el fichero csv de UO's:"
+     $ficheroImportado = import-csv -Path $ficheroCsvUO -delimiter :
+     foreach($line in $ficheroImportado)
+     {
+          New-ADOrganizationalUnit -Description:$line.Description -Name:$line.Name `
+		-Path:$line.Path -ProtectedFromAccidentalDeletion:$true 
+     }
+     Write-Host "Se han creado las UOs satisfactoriamente en el dominio $domain"
+}
+function alta_grupos
+{
+     	$gruposCsv=Read-Host "Introduce el fichero csv de Grupos:"
+	$ficheroImportado = import-csv -Path $gruposCsv -delimiter :
+	foreach($linea in $ficheroImportado)
+	{
+		
+		New-ADGroup -Name:$linea.Name -Description:$linea.Description `
+			-GroupCategory:$linea.Category `
+			-GroupScope:$linea.Scope  `
+			-Path:$linea.Path
+	}
+ 	 Write-Host "Se han creado las grupos satisfactoriamente en el dominio $domain"
+     
+}
+function alta_usuarios
+{
+	$fileUsersCsv=Read-Host "Introduce el fichero csv de los usuarios:"
+	$ficheroImportado = import-csv -Path $fileUsersCsv -Delimiter : 				     
+	foreach($linea in $ficheroImportado)
+	{
+		$passAccount=ConvertTo-SecureString $linea.DNI -AsPlainText -force
+		$Surnames=$linea.FirstName+' '+$linea.LastName
+		$nameLarge=$linea.Name+' '+$linea.FirstName+' '+$linea.LastName
+		$email=$linea.Email
+		[boolean]$Habilitado=$true
+    		If($linea.Enabled -Match 'false') { $Habilitado=$false}
+		#Establecer los días de expiración de la cuenta (Columna del csv ExpirationAccount)
+   		$ExpirationAccount = $linea.ExpirationAccount
+    		$timeExp = (get-date).AddDays($ExpirationAccount)
+		#
+		# Ejecutamos el comando para crear el usuario
+		#
+		New-ADUser -SamAccountName $linea.Account -UserPrincipalName $linea.Account -Name $linea.Account `
+			-Surname $Surnames -DisplayName $nameLarge -GivenName $linea.Name `
+			-Description "Cuenta de $nameLarge" -EmailAddress $email `
+			-AccountPassword $passAccount -Enabled $Habilitado `
+			-CannotChangePassword $false -ChangePasswordAtLogon $true `
+			-PasswordNotRequired $false -Path $linea.Path -AccountExpirationDate $timeExp `
+   			-LogonWorkstations $linea.computer
+		
+  		#
+  		## Establecer horario de inicio de sesión       
+                $horassesion = $linea.NetTime -replace(" ","")
+                net user $linea.Account /times:$horassesion 
+		
+  		#Asignar cuenta de Usuario a Grupo
+		# Distingued Name CN=Nombre-grupo,ou=..,ou=..,dc=..,dc=...
+		#En este caso el grupo se encuentra en la misma UO que el usuario
+                $cnGrpAccount="Cn="+$linea.Group+","+$linea.Path
+		Add-ADGroupMember -Identity $cnGrpAccount -Members $linea.Account
+		
+	}     
+}
+
 
 #Primero comprobaremos si se tiene cargado el módulo Active Directory
 if (!(Get-Module -Name ActiveDirectory)) #Accederá al then solo si no existe una entrada llamada ActiveDirectory
@@ -25,32 +90,6 @@ if (!(Get-Module -Name ActiveDirectory)) #Accederá al then solo si no existe un
   Import-Module ActiveDirectory #Se carga el módulo
 }
 
-#Cada vez que se inserta un objeto en AD, primero hay que comprobar que no existe
-#Comprobar si existe un objeto UO en el Controlador del Dominio
-$UO=UnidadOrganizativa
-if ( !(Get-ADOrganizationalUnit -Filter{ name -eq $UO })) #Devuelve false cuando ya existe la unidad organizativa $UO, y true cuando no existe.
-{
-}
-
-#Para Grupos
-$GRP=Grupo1
-if ( !(Get-ADGroup -Filter { name -eq $GRP })) #Devuelve false cuando ya existe el grupo $GRP, y true cuando no existe.
-{
-}
-
-#Para usuarios
-$usu=JC
-if ( !!(Get-ADUser -filter { name -eq $usu }) ) #Devuelve false cuando ya existe el grupo $usu, y true cuando no existe.
-{
-}
-#Para equipos
-$computer=W7-001
-if ( !!(Get-ADComputer -filter { name -eq $computer }) ) #Devuelve false cuando ya existe el ordenador $computer, y true cuando no existe.
-{
-}
-#
-# Fin comprobación de objetos
-#
 
 #
 #MENU PRINCIPAL
@@ -63,13 +102,13 @@ do
      {
            '1' {
                 Clear-Host
-                #llamar a la función que haga la acción 1
+                alta_UOs
            } '2' {
                 Clear-Host
-                #llamar a la función que haga la acción 2
+                alta_grupos
            } '3' {
                 Clear-Host
-                #llamar a la función que haga la acción 2
+                alta_usuarios
            } 'q' {
                 'Salimos de la App'
                 return
