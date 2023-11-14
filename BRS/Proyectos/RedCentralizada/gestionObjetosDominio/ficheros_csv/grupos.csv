@@ -1,0 +1,3 @@
+Name:Path:Description:Category:Scope
+GG-DepInformatica:OU=Dep-Informatica,dc=ciber,dc=mylocal:Grupo global y de seguridad del Dep.Informatica:Security:Global
+GG-DepLogistica:OU=Dep-Logistica,dc=ciber,dc=mylocal:Grupo global y de seguridad del Dep.Logistica:Security:Global
