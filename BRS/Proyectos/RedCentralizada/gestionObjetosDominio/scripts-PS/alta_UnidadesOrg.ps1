@@ -13,6 +13,13 @@ param($dominio,$sufifoDominio)
 #Por lo que hay que componer dc=smr,dc=local
 $domainComponent="dc="+$dominio+",dc="+$sufijoDominio
 
+#Primero comprobaremos si se tiene cargado el módulo Active Directory
+if (!(Get-Module -Name ActiveDirectory)) #Accederá al then solo si no existe una entrada llamada ActiveDirectory
+{
+  Import-Module ActiveDirectory #Se carga el módulo
+}
+
+
 #Solicitamos por pantalla al usuario el fichero csv y guardamos el valor en la variable $ficheroCsvUO
 #Ejemplo, el usuario introduce el fichero con la ruta donde se encuentra el mismo: C:\ficherosCsv\unidadesOrgnizativasSMR.csv
 $ficheroCsvUO=Read-Host "Introduce el fichero csv de UO's:"
