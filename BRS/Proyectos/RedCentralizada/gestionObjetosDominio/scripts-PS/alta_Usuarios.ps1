@@ -2,10 +2,6 @@
 Name*Surname*Surname1*Surname2*account*path*dni*Departament*Enabled*Password*ExpirationAccount*email*NetTime*computer*Group
 #Capturamos los 2 parámetros que hemos pasado en la ejecución del script
 
-
-#Ponemos el Domain Component para el dominio en cuestión, que para este caso es smr.local
-$domain="dc=ciber,dc=mylocal"
-
 #Primero comprobaremos si se tiene cargado el módulo Active Directory
 if (!(Get-Module -Name ActiveDirectory)) #Accederá al then solo si no existe una entrada llamada ActiveDirectory
 {
