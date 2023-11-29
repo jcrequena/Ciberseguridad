@@ -5,10 +5,8 @@
 #W10-CLI002:OU=Equipos-DepInf,OU=Dep-Informatica
 #Es decir, queremos crear los equipos, en la OU Equipos-DepInf que esta dentro de la OU Dep-Informatica
 #Por lo tanto para crear el equipo en esa ruta sobre el dominio smr.local quedaría así:
-#OU=Equipos-DepInf,OU=Dep-Informatica,DC=smr,DC=local
+#OU=Equipos-DepInf,OU=Dep-Informatica,DC=ciber,DC=mylocal
 
-#Ponemos el Domain Component para el dominio en cuestión, que para este caso es smr.local
-$domain="dc=smr,dc=local"
 
 #
 #Creación de los grupos a partir de un fichero csv
