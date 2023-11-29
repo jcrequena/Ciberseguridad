@@ -12,7 +12,7 @@ if (!(Get-Module -Name ActiveDirectory)) #Accederá al then solo si no existe un
 #
 $fileUsersCsv=Read-Host "Introduce el fichero csv de los usuarios:"
 #
-#Los campos del fichero csv están separados por el carácter ,
+#Los campos del fichero csv están separados por el carácter asterisco (*)
 #
 $fichero = import-csv -Path $fileUsersCsv -Delimiter *
 						     		     
