@@ -36,12 +36,7 @@ foreach($line in $fichero)
 	#que hemos compuesto al inicio  del script y que contiene el Domain Component
 	if ($line.Path -noMatch '') { $pathObjectUO=$domainComponent}
 	else {$pathObjectUO=$line.Path+","+$domainComponent}
-	#Antes de crear la OU, primero comprobamos que no exista en el sistema, para ello,
-	#hacemos uso del if condicional
-	if ( !(Get-ADOrganizationalUnit -Filter { name -eq $line.Name }) )
-	{
-        	New-ADOrganizationalUnit -Description:$line.Description -Name:$line.Name `
+	New-ADOrganizationalUnit -Description:$line.Description -Name:$line.Name `
 		-Path:$pathObjectUO -ProtectedFromAccidentalDeletion:$true
-        }
-	else { Write-Host "La unidad organizativa $line.Name ya existe en el sistema"}
+        Write-Host "Unidad organizativa $line.Name creada en el sistema"}
 }
