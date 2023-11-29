@@ -4,6 +4,13 @@
 #Name:Path:Description:Category:Scope
 #SMR-GG-DepInformatica:OU=Dep-Informatica:Grupo global y de seguridad del Dep.Informatica:Security:Global
 #SMR-GG-DepLogistica:OU=Dep-Logistica:Grupo global y de seguridad del Dep.Logistica:Security:Global
+
+#Primero comprobaremos si se tiene cargado el módulo Active Directory
+if (!(Get-Module -Name ActiveDirectory)) #Accederá al then solo si no existe una entrada llamada ActiveDirectory
+{
+  Import-Module ActiveDirectory #Se carga el módulo
+}
+
 #
 #Creación de los grupos a partir de un fichero csv
 #
