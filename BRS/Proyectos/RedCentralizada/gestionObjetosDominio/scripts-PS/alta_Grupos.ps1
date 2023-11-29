@@ -4,10 +4,6 @@
 #Name:Path:Description:Category:Scope
 #SMR-GG-DepInformatica:OU=Dep-Informatica:Grupo global y de seguridad del Dep.Informatica:Security:Global
 #SMR-GG-DepLogistica:OU=Dep-Logistica:Grupo global y de seguridad del Dep.Logistica:Security:Global
-
-#Ponemos el Domain Component para el dominio en cuestión, que para este caso es smr.local
-$domain="dc=smr,dc=local"
-
 #
 #Creación de los grupos a partir de un fichero csv
 #
