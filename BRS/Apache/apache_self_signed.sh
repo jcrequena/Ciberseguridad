@@ -8,10 +8,10 @@ cd /usr/share/easy-rsa
 
 sudo ./easyrsa init-pki
 yes "" | sudo ./easyrsa build-ca nopass
-sudo ./easyrsa build-server-full *.compute-1.amazonaws.com nopass
+sudo ./easyrsa build-server-full *.compute-1.ciber.mylocal nopass
 
-sudo mv pki/issued/\*.compute-1.amazonaws.com.crt /etc/ssl/certs/compute-1.amazonaws.com.crt
-sudo mv pki/private/\*.compute-1.amazonaws.com.key /etc/ssl/private/compute-1.amazonaws.com.key
+sudo mv pki/issued/\*.compute-1.ciber.mylocal.crt /etc/ssl/certs/compute-1.ciber.mylocal.crt
+sudo mv pki/private/\*.compute-1.ciber.mylocal.key /etc/ssl/private/compute-1.ciber.mylocal.key
 sudo cp pki/ca.crt /etc/ssl/certs/
 
 sudo cat <<'EOF' > /etc/apache2/sites-available/default-ssl.conf
@@ -40,8 +40,8 @@ sudo cat <<'EOF' > /etc/apache2/sites-available/default-ssl.conf
                 #   /usr/share/doc/apache2/README.Debian.gz for more info.
                 #   If both key and certificate are stored in the same file, only the
                 #   SSLCertificateFile directive is needed.
-                SSLCertificateFile      /etc/ssl/certs/compute-1.amazonaws.com.crt
-                SSLCertificateKeyFile /etc/ssl/private/compute-1.amazonaws.com.key
+                SSLCertificateFile      /etc/ssl/certs/compute-1.ciber.mylocal.crt
+                SSLCertificateKeyFile /etc/ssl/private/compute-1.ciber.mylocal.key
                 #   Server Certificate Chain:
                 #   Point SSLCertificateChainFile at a file containing the
                 #   concatenation of PEM encoded CA certificates which form the
