@@ -1,0 +1,12 @@
+#A fecha 04/01/2024 la última versión es la 3.13.0a1
+# download
+PS C:\Users\Administrator> Invoke-WebRequest -Uri https://www.python.org/ftp/python/3.13.0/python-3.13.0a1-amd64.exe -OutFile "python-3.13.0a1-amd64.exe"
+
+# install (to System Wide + set PATH)
+PS C:\Users\Administrator> .\python-3.13.0a1-amd64.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0 
+
+# reload environment variables
+PS C:\Users\Administrator> $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User") 
+# Check version
+PS C:\Users\Administrator> python -V 
+Python 3.10.
