@@ -1,12 +1,8 @@
 apparmor module is loaded.
-54 profiles are loaded.
-37 profiles are in enforce mode.
+50 profiles are loaded.
+33 profiles are in enforce mode.
    /snap/snapd/19457/usr/lib/snapd/snap-confine
    /snap/snapd/19457/usr/lib/snapd/snap-confine//mount-namespace-capture-helper
-   /snap/snapd/20290/usr/lib/snapd/snap-confine
-   /snap/snapd/20290/usr/lib/snapd/snap-confine//mount-namespace-capture-helper
-   /snap/snapd/20671/usr/lib/snapd/snap-confine
-   /snap/snapd/20671/usr/lib/snapd/snap-confine//mount-namespace-capture-helper
    /usr/bin/man
    /usr/lib/NetworkManager/nm-dhcp-client.action
    /usr/lib/NetworkManager/nm-dhcp-helper
@@ -58,14 +54,11 @@ apparmor module is loaded.
    traceroute
 0 profiles are in kill mode.
 0 profiles are in unconfined mode.
-5 processes have profiles defined.
-3 processes are in enforce mode.
-   /usr/sbin/cups-browsed (6059)
-   /usr/sbin/cupsd (5937)
-   /usr/lib/cups/notifier/dbus (6167) /usr/sbin/cupsd
-2 processes are in complain mode.
-   /usr/sbin/avahi-daemon (5438) avahi-daemon
-   /usr/sbin/avahi-daemon (5439) avahi-daemon
+2 processes have profiles defined.
+2 processes are in enforce mode.
+   /usr/sbin/cups-browsed (707)
+   /usr/sbin/cupsd (633)
+0 processes are in complain mode.
 0 processes are unconfined but have a profile defined.
 0 processes are in mixed mode.
 0 processes are in kill mode.
