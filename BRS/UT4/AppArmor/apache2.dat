@@ -1,0 +1,51 @@
+administrador@orion:~$ sudo aa-logprof
+Updating AppArmor profiles in /etc/apparmor.d.
+Reading log entries from /var/log/syslog.
+Complain-mode changes:
+
+Profile:  /usr/sbin/apache2
+Path:     /etc/gai.conf
+New Mode: owner r
+Severity: unknown
+
+ [1 - owner /etc/gai.conf r,]
+(A)llow / [(D)eny] / (I)gnore / (G)lob / Glob with (E)xtension / (N)ew / Audi(t) / (O)wner permissions off / Abo(r)t / (F)inish
+Adding owner /etc/gai.conf r, to profile.
+
+Profile:        /usr/sbin/apache2
+Network Family: netlink
+Socket Type:    raw
+
+ [1 - include <abstractions/nameservice>]
+  2 - network netlink raw, 
+(A)llow / [(D)eny] / (I)gnore / Audi(t) / Abo(r)t / (F)inish
+Adding include <abstractions/nameservice> to profile.
+Enforce-mode changes:
+
+Profile:    /usr/sbin/cups-browsed
+Capability: sys_nice
+Severity:   8
+
+ [1 - capability sys_nice,]
+(A)llow / [(D)eny] / (I)gnore / Audi(t) / Abo(r)t / (F)inish
+Adding capability sys_nice, to profile.
+
+Profile:    /usr/sbin/cupsd
+Capability: net_admin
+Severity:   8
+
+ [1 - capability net_admin,]
+(A)llow / [(D)eny] / (I)gnore / Audi(t) / Abo(r)t / (F)inish
+Adding capability net_admin, to profile.
+
+= Changed Local Profiles =
+
+The following local profiles were changed. Would you like to save them?
+
+ [1 - /usr/sbin/apache2]
+  2 - /usr/sbin/cups-browsed 
+  3 - /usr/sbin/cupsd 
+(S)ave Changes / Save Selec(t)ed Profile / [(V)iew Changes] / View Changes b/w (C)lean profiles / Abo(r)t
+Writing updated profile for /usr/sbin/apache2.
+Writing updated profile for /usr/sbin/cups-browsed.
+Writing updated profile for /usr/sbin/cupsd.
