@@ -1,27 +1,50 @@
-# Last Modified: Wed Jan 17 08:13:04 2024
+# Last Modified: Wed Jan 17 10:57:02 2024
 abi <abi/3.0>,
 
 include <tunables/global>
 
-/usr/sbin/nginx flags=(complain) {
+/usr/sbin/nginx {
   include <abstractions/apache2-common>
   include <abstractions/base>
-  include <abstractions/web-data>
+  include <abstractions/nameservice>
+  include <abstractions/openssl>
+  include <abstractions/ssl_keys>
+  include <abstractions/totem>
 
   capability dac_override,
-  capability setuid,
+  capability dac_read_search,
   capability setgid,
+  capability setuid,
 
-  /etc/nginx/conf.d/ r,
-  /etc/nginx/mime.types r,
-  /etc/nginx/nginx.conf r,
-  /etc/nginx/sites-available/* r,
-  /etc/nginx/sites-enabled/ r,
-  /etc/ssl/openssl.cnf r,
-  /run/nginx.pid rw,
-  /usr/sbin/nginx mr,
-  /var/log/nginx/error.log w,
-  /var/www/html/available/* r,
+  deny / rw,
+  deny /bin/bash r,
   deny /var/www/html/not_available/* r,
 
+  /usr/local/modsecurity/lib/lib*so* mr,
+  /usr/sbin/nginx mr,
+  /var/log/modsec_audit.log wk,
+  /var/log/nginx/*.log w,
+  /var/www/html/available/* r,
+  owner /etc/group r,
+  owner /etc/nginx/bots.d/*.conf r,
+  owner /etc/nginx/conf.d/ r,
+  owner /etc/nginx/conf.d/*.conf r,
+  owner /etc/nginx/custom-config/*.conf r,
+  owner /etc/nginx/mime.types r,
+  owner /etc/nginx/modsec/*.conf r,
+ owner /etc/nginx/modsec/owasp-modsecurity-crs/ r,
+  owner /etc/nginx/modsec/owasp-modsecurity-crs/**.conf r,
+  owner /etc/nginx/modsec/owasp-modsecurity-crs/**.data r,
+  owner /etc/nginx/modsec/owasp-modsecurity-crs/rules/ r,
+  owner /etc/nginx/modsec/unicode.mapping r,
+  owner /etc/nginx/nginx.conf r,
+  owner /etc/nginx/sites-available/* r,
+  owner /etc/nginx/sites-enabled/ r,
+  owner /etc/nginx/uwsgi_params r,
+  owner /etc/nsswitch.conf r,
+  owner /etc/passwd r,
+  owner /run/nginx.pid rw,
+  owner /run/nginx.pid.oldbin w,
+  owner /usr/share/GeoIP/*.mmdb r,
+  owner /var/cache/nginx/** rw,
 }
