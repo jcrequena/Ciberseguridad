@@ -54,11 +54,14 @@ apparmor module is loaded.
    traceroute
 0 profiles are in kill mode.
 0 profiles are in unconfined mode.
-2 processes have profiles defined.
-2 processes are in enforce mode.
-   /usr/sbin/cups-browsed (707)
-   /usr/sbin/cupsd (633)
-0 processes are in complain mode.
+5 processes have profiles defined.
+3 processes are in enforce mode.
+   /usr/sbin/cups-browsed (3460)
+   /usr/sbin/cupsd (3338)
+   /usr/lib/cups/notifier/dbus (3540) /usr/sbin/cupsd
+2 processes are in complain mode.
+   /usr/sbin/avahi-daemon (2821) avahi-daemon
+   /usr/sbin/avahi-daemon (2822) avahi-daemon
 0 processes are unconfined but have a profile defined.
 0 processes are in mixed mode.
 0 processes are in kill mode.
