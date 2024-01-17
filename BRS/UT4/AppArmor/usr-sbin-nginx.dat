@@ -1,0 +1,27 @@
+# Last Modified: Wed Jan 17 08:13:04 2024
+abi <abi/3.0>,
+
+include <tunables/global>
+
+/usr/sbin/nginx flags=(complain) {
+  include <abstractions/apache2-common>
+  include <abstractions/base>
+  include <abstractions/web-data>
+
+  capability dac_override,
+  capability setuid,
+  capability setgid,
+
+  /etc/nginx/conf.d/ r,
+  /etc/nginx/mime.types r,
+  /etc/nginx/nginx.conf r,
+  /etc/nginx/sites-available/* r,
+  /etc/nginx/sites-enabled/ r,
+  /etc/ssl/openssl.cnf r,
+  /run/nginx.pid rw,
+  /usr/sbin/nginx mr,
+  /var/log/nginx/error.log w,
+  /var/www/html/available/* r,
+  deny /var/www/html/not_available/* r,
+
+}
