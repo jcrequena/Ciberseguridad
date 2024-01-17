@@ -1,0 +1,146 @@
+Updating AppArmor profiles in /etc/apparmor.d.
+Reading log entries from /var/log/syslog.
+Complain-mode changes:
+
+Profile:    /usr/sbin/nginx
+Capability: dac_override
+Severity:   9
+
+ [1 - capability dac_override,]
+(A)llow / [(D)eny] / (I)gnore / Audi(t) / Abo(r)t / (F)inish
+Adding capability dac_override, to profile.
+
+Profile:  /usr/sbin/nginx
+Path:     /var/log/nginx/error.log
+New Mode: w
+Severity: 8
+
+ [1 - /var/log/nginx/error.log w,]
+(A)llow / [(D)eny] / (I)gnore / (G)lob / Glob with (E)xtension / (N)ew / Audi(t) / Abo(r)t / (F)inish
+Adding /var/log/nginx/error.log w, to profile.
+
+Profile:  /usr/sbin/nginx
+Path:     /etc/ssl/openssl.cnf
+New Mode: owner r
+Severity: 2
+
+ [1 - include <abstractions/openssl>]
+  2 - include <abstractions/ssl_keys>
+  3 - owner /etc/ssl/openssl.cnf r,
+(A)llow / [(D)eny] / (I)gnore / (G)lob / Glob with (E)xtension / (N)ew / Audi(t) / (O)wner permissions off / Abo(r)t / (F)inish
+Adding include <abstractions/openssl> to profile.
+
+Profile:  /usr/sbin/nginx
+Path:     /etc/nginx/nginx.conf
+New Mode: owner r
+Severity: unknown
+
+ [1 - owner /etc/nginx/nginx.conf r,]
+(A)llow / [(D)eny] / (I)gnore / (G)lob / Glob with (E)xtension / (N)ew / Audi(t) / (O)wner permissions off / Abo(r)t / (F)inish
+Adding owner /etc/nginx/nginx.conf r, to profile.
+
+Profile:  /usr/sbin/nginx
+Path:     /etc/nsswitch.conf
+New Mode: owner r
+Severity: unknown
+
+ [1 - owner /etc/nsswitch.conf r,]
+(A)llow / [(D)eny] / (I)gnore / (G)lob / Glob with (E)xtension / (N)ew / Audi(t) / (O)wner permissions off / Abo(r)t / (F)inish
+Adding owner /etc/nsswitch.conf r, to profile.
+
+Profile:  /usr/sbin/nginx
+Path:     /etc/passwd
+New Mode: owner r
+Severity: 4
+
+ [1 - owner /etc/passwd r,]
+(A)llow / [(D)eny] / (I)gnore / (G)lob / Glob with (E)xtension / (N)ew / Audi(t) / (O)wner permissions off / Abo(r)t / (F)inish
+Adding owner /etc/passwd r, to profile.
+
+Profile:  /usr/sbin/nginx
+Path:     /etc/group
+New Mode: owner r
+Severity: 4
+
+ [1 - owner /etc/group r,]
+(A)llow / [(D)eny] / (I)gnore / (G)lob / Glob with (E)xtension / (N)ew / Audi(t) / (O)wner permissions off / Abo(r)t / (F)inish
+Adding owner /etc/group r, to profile.
+
+Profile:  /usr/sbin/nginx
+Path:     /etc/nginx/modules-enabled/
+New Mode: owner r
+Severity: unknown
+
+ [1 - owner /etc/nginx/modules-enabled/ r,]
+(A)llow / [(D)eny] / (I)gnore / (G)lob / Glob with (E)xtension / (N)ew / Audi(t) / (O)wner permissions off / Abo(r)t / (F)inish
+Adding owner /etc/nginx/modules-enabled/ r, to profile.
+
+Profile:  /usr/sbin/nginx
+Path:     /usr/share/nginx/modules-available/mod-http-geoip2.conf
+New Mode: owner r
+Severity: unknown
+
+ [1 - owner /usr/share/nginx/modules-available/mod-http-geoip2.conf r,]
+(A)llow / [(D)eny] / (I)gnore / (G)lob / Glob with (E)xtension / (N)ew / Audi(t) / (O)wner permissions off / Abo(r)t / (F)inish
+Adding owner /usr/share/nginx/modules-available/mod-http-geoip2.conf r, to profile.
+
+Profile:  /usr/sbin/nginx
+Path:     /usr/share/nginx/modules-available/mod-http-image-filter.conf
+New Mode: owner r
+Severity: unknown
+
+ [1 - owner /usr/share/nginx/modules-available/mod-http-image-filter.conf r,]
+(A)llow / [(D)eny] / (I)gnore / (G)lob / Glob with (E)xtension / (N)ew / Audi(t) / (O)wner permissions off / Abo(r)t / (F)inish
+Adding owner /usr/share/nginx/modules-available/mod-http-image-filter.conf r, to profile.
+
+Profile:  /usr/sbin/nginx
+Path:     /var/www/html/available/
+New Mode: r
+Severity: unknown
+
+ [1 - include <abstractions/web-data>]
+  2 - /var/www/html/available/ r,
+(A)llow / [(D)eny] / (I)gnore / (G)lob / Glob with (E)xtension / (N)ew / Audi(t) / Abo(r)t / (F)inish
+Adding include <abstractions/web-data> to profile.
+
+Profile:  /usr/sbin/nginx
+Path:     /var/log/nginx/access.log
+New Mode: owner w
+Severity: 8
+
+ [1 - owner /var/log/nginx/access.log w,]
+(A)llow / [(D)eny] / (I)gnore / (G)lob / Glob with (E)xtension / (N)ew / Audi(t) / (O)wner permissions off / Abo(r)t / (F)inish
+Adding owner /var/log/nginx/access.log w, to profile.
+
+Profile:        /usr/sbin/nginx
+Network Family: inet
+Socket Type:    stream
+
+ [1 - include <abstractions/apache2-common>]
+  2 - include <abstractions/nameservice>
+  3 - network inet stream,
+(A)llow / [(D)eny] / (I)gnore / Audi(t) / Abo(r)t / (F)inish
+Adding include <abstractions/apache2-common> to profile.
+Enforce-mode changes:
+
+Profile:    /usr/sbin/cups-browsed
+Capability: sys_nice
+Severity:   8
+
+ [1 - capability sys_nice,]
+(A)llow / [(D)eny] / (I)gnore / Audi(t) / Abo(r)t / (F)inish
+
+Profile:    /usr/sbin/cupsd
+Capability: net_admin
+Severity:   8
+
+ [1 - capability net_admin,]
+(A)llow / [(D)eny] / (I)gnore / Audi(t) / Abo(r)t / (F)inish
+
+= Changed Local Profiles =
+
+The following local profiles were changed. Would you like to save them?
+
+ [1 - /usr/sbin/nginx]
+(S)ave Changes / Save Selec(t)ed Profile / [(V)iew Changes] / View Changes b/w (C)lean profiles / Abo(r)t
+Writing updated profile for /usr/sbin/nginx.
