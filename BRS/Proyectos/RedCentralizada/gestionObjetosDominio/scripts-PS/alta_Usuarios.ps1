@@ -2,7 +2,7 @@
 Name*Surname*Surname1*Surname2*Account*OU*Group*Departament*Enabled*Password*ExpirationAccount*NetTime
 # Llamada: alta_Usuarios.ps1 ciber mylocal
 #Capturamos los 2 parámetros que hemos pasado en la ejecución del script
-Param(
+PParam(
     [string] $dominio,
     [string] $sufijo
 )
@@ -16,15 +16,14 @@ if (!(Get-Module -Name ActiveDirectory)) #Accederá al then solo si no existe un
 #
 #Creación de los usuarios
 #
-$fileUsersCsv=Read-Host "Introduce el fichero csv de los usuarios:"
+$fileUsersCsv=Read-Host "Introduce el fichero csv de los usuarios"
+
 #
 #Los campos del fichero csv están separados por el carácter asterisco (*)
 #
-$fichero = import-csv -Path $fileUsersCsv -Delimiter *
-						     		     
+$fichero = import-csv -Path $fileUsersCsv -Delimiter *					     		     
 foreach($linea in $fichero)
 {
-	
 	$passAccount=ConvertTo-SecureString $linea.Password -AsPlainText -force
 	$Surnames=$linea.Name+' '+$linea.Surname
 	$nameLarge=$linea.Name+' '+$linea.Surname1+' '+$linea.Surname2
@@ -34,22 +33,23 @@ foreach($linea in $fichero)
 	#Establecer los días de expiración de la cuenta (Columna del csv ExpirationAccount)
    	$ExpirationAccount = $linea.ExpirationAccount
     	$timeExp = (get-date).AddDays($ExpirationAccount)
+        $rutaObjeto= 'OU='+ $linea.OU + ',' + $dc
 	#
 	# Ejecutamos el comando para crear el usuario
 	#
-	New-ADUser -SamAccountName $linea.Account -UserPrincipalName $linea.Account -Name $linea.Account `
+        New-ADUser -SamAccountName $linea.Account -UserPrincipalName $linea.Account -Name $linea.Account `
 		-Surname $Surnames -DisplayName $nameLarge -GivenName $linea.Name `
 		-Description "Cuenta de $nameLarge" -EmailAddress $email `
 		-AccountPassword $passAccount -Enabled $Habilitado `
 		-CannotChangePassword $false -ChangePasswordAtLogon $true `
-		-PasswordNotRequired $false -Path $linea.Path -AccountExpirationDate $timeExp
+		-PasswordNotRequired $false -Path $rutaObjeto -AccountExpirationDate $timeExp
 		
   	## Establecer horario de inicio de sesión       
         $horassesion = $linea.NetTime -replace(" ","")
         net user $linea.Account /times:$horassesion 
 	#Asignar cuenta de Usuario a Grupo
 	# Distingued Name CN=Nombre-grupo,ou=..,ou=..,dc=..,dc=...
-	$cnGrpAccount="Cn="+$linea.Group+","+$linea.Path
+	$cnGrpAccount="Cn="+$linea.Group+","+$rutaObjeto
 	Add-ADGroupMember -Identity $cnGrpAccount -Members $linea.Account
 	
 } 
