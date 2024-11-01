@@ -56,16 +56,16 @@ foreach($linea in $fichero)
 Write-Host "Se han creado los usuarios correctamente en el dominio $dominio" 
 
 # A continuación, las propiedades de New-ADUser que se han utilizado son:
-SamAccountName: nombre de la cuenta SAM para compatibilidad con equipos anteriores a Windows 2000.
-UserPrincipalName: Nombre opcional que puede ser más corto y fácil de recordar que el DN (Distinguished Name) y que puede ser utilizado por el sistema.
-Name: Nombre de la cuenta de usuario.
-Surname: Apellidos del usuario.
-DisplayName: Nombre del usuario que se mostrará cuando inicie sesión en un equipo.
-GivenName: Nombre de pila.
-Description: Descripción de la cuenta de usuario.
-EmailAddress: Dirección de correo electrónico.
-AccountPassword: Contraseña cifrada.
-Enabled: Cuenta habilitada ($true) o deshabilitada ($false).
-CannotChangePassword: El usuario no puede cambiar la contraseña (como antes, tiene dos valores: $true y $false).
-ChangePasswordAtLogon: Si su valor es $true obliga al usuario a cambiar la contraseña cuando vuelva a iniciar sesión.
-PasswordNotRequired: Permite que el usuario no tenga contraseña.
+#SamAccountName: nombre de la cuenta SAM para compatibilidad con equipos anteriores a Windows 2000.
+#UserPrincipalName: Nombre opcional que puede ser más corto y fácil de recordar que el DN (Distinguished Name) y que puede ser utilizado por el sistema.
+#Name: Nombre de la cuenta de usuario.
+#Surname: Apellidos del usuario.
+#DisplayName: Nombre del usuario que se mostrará cuando inicie sesión en un equipo.
+#GivenName: Nombre de pila.
+#Description: Descripción de la cuenta de usuario.
+#EmailAddress: Dirección de correo electrónico.
+#AccountPassword: Contraseña cifrada.
+#Enabled: Cuenta habilitada ($true) o deshabilitada ($false).
+#CannotChangePassword: El usuario no puede cambiar la contraseña (como antes, tiene dos valores: $true y $false).
+#ChangePasswordAtLogon: Si su valor es $true obliga al usuario a cambiar la contraseña cuando vuelva a iniciar sesión.
+#PasswordNotRequired: Permite que el usuario no tenga contraseña.
