@@ -53,7 +53,7 @@ foreach($linea in $ficheroImportado)
 	Add-ADGroupMember -Identity $cnGrpAccount -Members $linea.Account
 	
 } 
-Write-Host "Se han creado los usuarios correctamente en el dominio $domain" 
+Write-Host "Se han creado los usuarios correctamente en el dominio $dominio" 
 
 # A continuación, las propiedades de New-ADUser que se han utilizado son:
 SamAccountName: nombre de la cuenta SAM para compatibilidad con equipos anteriores a Windows 2000.
