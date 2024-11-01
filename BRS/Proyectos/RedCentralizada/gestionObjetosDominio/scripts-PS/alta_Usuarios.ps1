@@ -1,6 +1,12 @@
 #El fichero csv usado tiene estos campos/columnas
-Name*Surname*Surname1*Surname2*account*path*dni*Departament*Enabled*Password*ExpirationAccount*email*NetTime*computer*Group
+#Name*Surname*Surname1*Surname2*Account*Path*Group*Departament*Enabled*Password*ExpirationAccount*NetTime
+# Llamada: alta_Usuarios.ps1 ciber mylocal
 #Capturamos los 2 parámetros que hemos pasado en la ejecución del script
+Param(
+    [string] $dominio,
+    [string] $sufijo
+)
+$dc="dc="+$dominio+",dc="+$sufijo
 
 #Primero comprobaremos si se tiene cargado el módulo Active Directory
 if (!(Get-Module -Name ActiveDirectory)) #Accederá al then solo si no existe una entrada llamada ActiveDirectory
@@ -20,9 +26,9 @@ foreach($linea in $ficheroImportado)
 {
 	
 	$passAccount=ConvertTo-SecureString $linea.Password -AsPlainText -force
-	$Surnames=$linea.FirstName+' '+$linea.LastName
-	$nameLarge=$linea.Name+' '+$linea.FirstName+' '+$linea.LastName
-	$email=$linea.Email
+	$Surnames=$linea.Name+' '+$linea.Surname
+	$nameLarge=$linea.Name+' '+$linea.Surname1+' '+$linea.Surname2
+	$email=$linea.Account + '@' + $dominio + '.' + $sufijo
 	[boolean]$Habilitado=$true
     	If($linea.Enabled -Match 'false') { $Habilitado=$false}
 	#Establecer los días de expiración de la cuenta (Columna del csv ExpirationAccount)
@@ -37,13 +43,10 @@ foreach($linea in $ficheroImportado)
 		-AccountPassword $passAccount -Enabled $Habilitado `
 		-CannotChangePassword $false -ChangePasswordAtLogon $true `
 		-PasswordNotRequired $false -Path $linea.Path -AccountExpirationDate $timeExp
-  		-LogonWorkstations $linea.computer
 		
-  
   	## Establecer horario de inicio de sesión       
         $horassesion = $linea.NetTime -replace(" ","")
         net user $linea.Account /times:$horassesion 
-	
 	#Asignar cuenta de Usuario a Grupo
 	# Distingued Name CN=Nombre-grupo,ou=..,ou=..,dc=..,dc=...
 	$cnGrpAccount="Cn="+$linea.Group+","+$linea.Path
@@ -61,9 +64,8 @@ DisplayName: Nombre del usuario que se mostrará cuando inicie sesión en un equ
 GivenName: Nombre de pila.
 Description: Descripción de la cuenta de usuario.
 EmailAddress: Dirección de correo electrónico.
-AccountPassword: Contraseña encriptada.
+AccountPassword: Contraseña cifrada.
 Enabled: Cuenta habilitada ($true) o deshabilitada ($false).
 CannotChangePassword: El usuario no puede cambiar la contraseña (como antes, tiene dos valores: $true y $false).
 ChangePasswordAtLogon: Si su valor es $true obliga al usuario a cambiar la contraseña cuando vuelva a iniciar sesión.
 PasswordNotRequired: Permite que el usuario no tenga contraseña.
-LogonWorkstations: Permite añadir el equipo que usará el usuario para iniciar sesión.
