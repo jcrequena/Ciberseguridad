@@ -25,7 +25,7 @@ $fichero = import-csv -Path $fileUsersCsv -Delimiter *
 foreach($linea in $fichero)
 {
 	$passAccount=ConvertTo-SecureString $linea.Password -AsPlainText -force
-	$Surnames=$linea.Name+' '+$linea.Surname
+	$Surnames=$linea.Surname1+' '+$linea.Surname2
 	$nameLarge=$linea.Name+' '+$linea.Surname1+' '+$linea.Surname2
 	$email=$linea.Account + '@' + $dominio + '.' + $sufijo
 	[boolean]$Habilitado=$true
