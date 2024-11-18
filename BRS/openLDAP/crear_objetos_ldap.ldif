@@ -5,70 +5,68 @@ dn: ou=depInformatica,dc=ciber,dc=mylocal
 objectClass: organizationalUnit
 ou: depInformatica
 
+#Creamos la ou grupos dentro de la ou depInformatica
 dn: ou=grupos,ou=depInformatica,dc=ciber,dc=mylocal
 objectClass: organizationalUnit
 ou: grupos
 
 #
-#Crear usuarios LDAP
+#Crear usuarios LDAP dentro de la ou depInformatica
 #
-dn: uid=user01,ou=depInformatica,dc=ciber,dc=mylocal
+dn: uid=usuario01-ldap,ou=depInformatica,dc=ciber,dc=mylocal
 objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: top
-cn: Usuario 01 Informática
-sn: user01
-displayName: Usuario 01 Informática
+objectClass: posixAccount
+objectClass: shadowAccount
+uid: usuario01-ldap
+cn: usuario01
+sn: ldap
+displayName: Usuario 01 Informática - LDAP
 givenName: Informática
-mail: user01@ciber.local
-userPassword: hPk9iPBJQJxuFmM53j+YhQUuSvTzRt
+mail: user01-ldap@ciber.local
+userPassword: {SSHA}TWWnxuBaXt1Hx9ohEXqOJPqXZAgm9lwc
+homeDirectory: /home/usuario01-ldap
+loginShell: /bin/bash
+uidNumber: 10000
+gidNumber: 10000
+shadowMax: 60
+shadowMin: 1
+shadowWarning: 7
+shadowInactive: 7
+shadowLastChange: 0
 
-dn: uid=user02,ou=depInformatica,dc=ciber,dc=mylocal
+dn: uid=usuario02-ldap,ou=depInformatica,dc=ciber,dc=mylocal
 objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: top
-cn: Usuario 02 Informática
-sn: user02
-displayName: Usuario 02 Informática
+objectClass: posixAccount
+objectClass: shadowAccount
+uid: usuario02-ldap
+cn: usuario02
+sn: ldap
+displayName: Usuario 02 Informática - LDAP
 givenName: Informática
-mail: user01@ciber.local
-userPassword: hPk9iPBJQJxuFmM53j+YhQUuSvTzRt
-
-dn: uid=user03,ou=depInformatica,dc=ciber,dc=mylocal
-objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: top
-cn: Usuario 03 Informática
-sn: user03
-displayName: Informática User03
-givenName: Informática
-mail: user03@ciber.local
-userPassword: hPk9iPBJQJxuFmM53j+YhQUuSvTzRt
-
-dn: uid=user04,ou=depInformatica,dc=ciber,dc=mylocal
-objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: top
-cn: Informatica User04
-sn: user04
-displayName: Usuarios 04 Informática
-givenName: Informática
-mail: user04@ciber.local
-userPassword: hPk9iPBJQJxuFmM53j+YhQUuSvTzRt
+mail: user02-ldap@ciber.local
+userPassword: {SSHA}TWWnxuBaXt1Hx9ohEXqOJPqXZAgm9lwc
+homeDirectory: /home/usuario02-ldap
+loginShell: /bin/bash
+uidNumber: 10000
+gidNumber: 10000
+shadowMax: 60
+shadowMin: 1
+shadowWarning: 7
+shadowInactive: 7
+shadowLastChange: 0
 
 #
 #Crear grupos globales y agregar usuarios a los mismos
 #
 dn: cn=GGProgramacion,ou=grupos,ou=depInformatica,dc=ciber,dc=mylocal
 objectClass: groupOfNames
-objectClass: top
 cn: GGProgramacion
-member: uid=user01,ou=depInformatica,dc=ciber,dc=mylocal
-member: uid=user02,ou=depInformatica,dc=ciber,dc=mylocal
+gidNumber: 10000
+member: uid=usuario01-ldap,ou=depInformatica,dc=ciber,dc=mylocal
 
 dn: cn=GGRedes,ou=grupos,ou=depInformatica,dc=ciber,dc=mylocal
 objectClass: groupOfNames
 objectClass: top
 cn: GGRedes
-member: uid=user03,ou=depInformatica,dc=ciber,dc=mylocal
-member: uid=user04,ou=depInformatica,dc=ciber,dc=mylocal
+gidNumber: 10001
+member: uid=usuario02-ldap,ou=depInformatica,dc=ciber,dc=mylocal
