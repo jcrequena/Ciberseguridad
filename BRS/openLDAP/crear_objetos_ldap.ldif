@@ -1,18 +1,18 @@
 #
 #Crear Unidades Organizativas
 #
-dn: ou=depInformatica,dc=ciber,dc=local
+dn: ou=depInformatica,dc=ciber,dc=mylocal
 objectClass: organizationalUnit
 ou: depInformatica
 
-dn: ou=grupos,ou=depInformatica,dc=ciber,dc=local
+dn: ou=grupos,ou=depInformatica,dc=ciber,dc=mylocal
 objectClass: organizationalUnit
 ou: grupos
 
 #
 #Crear usuarios LDAP
 #
-dn: uid=user01,ou=depInformatica,dc=ciber,dc=local
+dn: uid=user01,ou=depInformatica,dc=ciber,dc=mylocal
 objectClass: inetOrgPerson
 objectClass: organizationalPerson
 objectClass: top
@@ -23,7 +23,7 @@ givenName: Informática
 mail: user01@ciber.local
 userPassword: hPk9iPBJQJxuFmM53j+YhQUuSvTzRt
 
-dn: uid=user02,ou=depInformatica,dc=ciber,dc=local
+dn: uid=user02,ou=depInformatica,dc=ciber,dc=mylocal
 objectClass: inetOrgPerson
 objectClass: organizationalPerson
 objectClass: top
@@ -34,7 +34,7 @@ givenName: Informática
 mail: user01@ciber.local
 userPassword: hPk9iPBJQJxuFmM53j+YhQUuSvTzRt
 
-dn: uid=user03,ou=depInformatica,dc=ciber,dc=local
+dn: uid=user03,ou=depInformatica,dc=ciber,dc=mylocal
 objectClass: inetOrgPerson
 objectClass: organizationalPerson
 objectClass: top
@@ -45,7 +45,7 @@ givenName: Informática
 mail: user03@ciber.local
 userPassword: hPk9iPBJQJxuFmM53j+YhQUuSvTzRt
 
-dn: uid=user04,ou=depInformatica,dc=ciber,dc=local
+dn: uid=user04,ou=depInformatica,dc=ciber,dc=mylocal
 objectClass: inetOrgPerson
 objectClass: organizationalPerson
 objectClass: top
@@ -59,16 +59,16 @@ userPassword: hPk9iPBJQJxuFmM53j+YhQUuSvTzRt
 #
 #Crear grupos globales y agregar usuarios a los mismos
 #
-dn: cn=GGProgramacion,ou=grupos,ou=depInformatica,dc=ciber,dc=local
+dn: cn=GGProgramacion,ou=grupos,ou=depInformatica,dc=ciber,dc=mylocal
 objectClass: groupOfNames
 objectClass: top
 cn: GGProgramacion
-member: uid=user01,ou=depInformatica,dc=ciber,dc=local
-member: uid=user02,ou=depInformatica,dc=ciber,dc=local
+member: uid=user01,ou=depInformatica,dc=ciber,dc=mylocal
+member: uid=user02,ou=depInformatica,dc=ciber,dc=mylocal
 
-dn: cn=GGRedes,ou=grupos,ou=depInformatica,dc=ciber,dc=local
+dn: cn=GGRedes,ou=grupos,ou=depInformatica,dc=ciber,dc=mylocal
 objectClass: groupOfNames
 objectClass: top
 cn: GGRedes
-member: uid=user03,ou=depInformatica,dc=ciber,dc=local
-member: uid=user04,ou=depInformatica,dc=ciber,dc=local
+member: uid=user03,ou=depInformatica,dc=ciber,dc=mylocal
+member: uid=user04,ou=depInformatica,dc=ciber,dc=mylocal
