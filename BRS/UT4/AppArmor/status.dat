@@ -1,18 +1,15 @@
 apparmor module is loaded.
-150 profiles are loaded.
-55 profiles are in enforce mode.
-   /home/administrador/testing.sh
+148 profiles are loaded.
+52 profiles are in enforce mode.
    /usr/bin/man
    /usr/bin/pidgin
    /usr/bin/pidgin//sanitized_helper
-   /usr/bin/ping
    /usr/bin/totem
    /usr/bin/totem-audio-preview
    /usr/bin/totem-video-thumbnailer
    /usr/bin/totem//sanitized_helper
    /usr/lib/snapd/snap-confine
    /usr/lib/snapd/snap-confine//mount-namespace-capture-helper
-   1password
    apt-cacher-ng
    avahi-daemon
    dnsmasq
@@ -64,7 +61,8 @@ apparmor module is loaded.
    transmission-qt
 0 profiles are in prompt mode.
 0 profiles are in kill mode.
-90 profiles are in unconfined mode.
+91 profiles are in unconfined mode.
+   1password
    Discord
    MongoDB Compass
    QtWebEngineProcess
@@ -157,7 +155,7 @@ apparmor module is loaded.
    wpcom
 1 processes have profiles defined.
 1 processes are in enforce mode.
-   /usr/sbin/rsyslogd (703) rsyslogd
+   /usr/sbin/rsyslogd (5651) rsyslogd
 0 processes are in complain mode.
 0 processes are in prompt mode.
 0 processes are in kill mode.
