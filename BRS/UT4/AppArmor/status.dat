@@ -1,67 +1,165 @@
 apparmor module is loaded.
-50 profiles are loaded.
-33 profiles are in enforce mode.
-   /snap/snapd/19457/usr/lib/snapd/snap-confine
-   /snap/snapd/19457/usr/lib/snapd/snap-confine//mount-namespace-capture-helper
+150 profiles are loaded.
+55 profiles are in enforce mode.
+   /home/administrador/testing.sh
    /usr/bin/man
-   /usr/lib/NetworkManager/nm-dhcp-client.action
-   /usr/lib/NetworkManager/nm-dhcp-helper
-   /usr/lib/connman/scripts/dhclient-script
-   /usr/lib/cups/backend/cups-pdf
+   /usr/bin/pidgin
+   /usr/bin/pidgin//sanitized_helper
+   /usr/bin/ping
+   /usr/bin/totem
+   /usr/bin/totem-audio-preview
+   /usr/bin/totem-video-thumbnailer
+   /usr/bin/totem//sanitized_helper
    /usr/lib/snapd/snap-confine
    /usr/lib/snapd/snap-confine//mount-namespace-capture-helper
-   /usr/sbin/cups-browsed
-   /usr/sbin/cupsd
-   /usr/sbin/cupsd//third_party
-   /{,usr/}sbin/dhclient
-   lsb_release
-   man_filter
-   man_groff
-   nvidia_modprobe
-   nvidia_modprobe//kmod
-   snap-update-ns.lxd
-   snap.lxd.activate
-   snap.lxd.benchmark
-   snap.lxd.buginfo
-   snap.lxd.check-kernel
-   snap.lxd.daemon
-   snap.lxd.hook.configure
-   snap.lxd.hook.install
-   snap.lxd.hook.remove
-   snap.lxd.lxc
-   snap.lxd.lxc-to-lxd
-   snap.lxd.lxd
-   snap.lxd.migrate
-   snap.lxd.user-daemon
-   tcpdump
-17 profiles are in complain mode.
+   1password
+   apt-cacher-ng
    avahi-daemon
    dnsmasq
    dnsmasq//libvirt_leaseshelper
    identd
    klogd
+   lsb_release
+   man_filter
+   man_groff
    mdnsd
    nmbd
    nscd
+   nvidia_modprobe
+   nvidia_modprobe//kmod
    php-fpm
    ping
+   plasmashell
+   plasmashell//QtWebEngineProcess
+   rsyslogd
    samba-bgqd
+   samba-dcerpcd
+   samba-rpcd
+   samba-rpcd-classic
+   samba-rpcd-spoolss
    smbd
    smbldap-useradd
    smbldap-useradd///etc/init.d/nscd
    syslog-ng
    syslogd
+   tcpdump
    traceroute
+   ubuntu_pro_apt_news
+   ubuntu_pro_esm_cache
+   ubuntu_pro_esm_cache//apt_methods
+   ubuntu_pro_esm_cache//apt_methods_gpgv
+   ubuntu_pro_esm_cache//cloud_id
+   ubuntu_pro_esm_cache//dpkg
+   ubuntu_pro_esm_cache//ps
+   ubuntu_pro_esm_cache//ubuntu_distro_info
+   ubuntu_pro_esm_cache_systemctl
+   ubuntu_pro_esm_cache_systemd_detect_virt
+   unix-chkpwd
+   unprivileged_userns
+5 profiles are in complain mode.
+   /usr/bin/irssi
+   transmission-cli
+   transmission-daemon
+   transmission-gtk
+   transmission-qt
+0 profiles are in prompt mode.
 0 profiles are in kill mode.
-0 profiles are in unconfined mode.
-5 processes have profiles defined.
-3 processes are in enforce mode.
-   /usr/sbin/cups-browsed (3460)
-   /usr/sbin/cupsd (3338)
-   /usr/lib/cups/notifier/dbus (3540) /usr/sbin/cupsd
-2 processes are in complain mode.
-   /usr/sbin/avahi-daemon (2821) avahi-daemon
-   /usr/sbin/avahi-daemon (2822) avahi-daemon
+90 profiles are in unconfined mode.
+   Discord
+   MongoDB Compass
+   QtWebEngineProcess
+   balena-etcher
+   brave
+   buildah
+   busybox
+   cam
+   ch-checkns
+   ch-run
+   chrome
+   crun
+   devhelp
+   element-desktop
+   epiphany
+   evolution
+   firefox
+   flatpak
+   foliate
+   geary
+   github-desktop
+   goldendict
+   ipa_verify
+   kchmviewer
+   keybase
+   lc-compliance
+   libcamerify
+   linux-sandbox
+   loupe
+   lxc-attach
+   lxc-create
+   lxc-destroy
+   lxc-execute
+   lxc-stop
+   lxc-unshare
+   lxc-usernsexec
+   mmdebstrap
+   msedge
+   nautilus
+   notepadqq
+   obsidian
+   opam
+   opera
+   pageedit
+   podman
+   polypane
+   privacybrowser
+   qcam
+   qmapshack
+   qutebrowser
+   rootlesskit
+   rpm
+   rssguard
+   runc
+   sbuild
+   sbuild-abort
+   sbuild-adduser
+   sbuild-apt
+   sbuild-checkpackages
+   sbuild-clean
+   sbuild-createchroot
+   sbuild-destroychroot
+   sbuild-distupgrade
+   sbuild-hold
+   sbuild-shell
+   sbuild-unhold
+   sbuild-update
+   sbuild-upgrade
+   scide
+   signal-desktop
+   slack
+   slirp4netns
+   steam
+   stress-ng
+   surfshark
+   systemd-coredump
+   thunderbird
+   toybox
+   trinity
+   tup
+   tuxedo-control-center
+   userbindmount
+   uwsgi-core
+   vdens
+   virtiofsd
+   vivaldi-bin
+   vpnns
+   vscode
+   wike
+   wpcom
+1 processes have profiles defined.
+1 processes are in enforce mode.
+   /usr/sbin/rsyslogd (703) rsyslogd
+0 processes are in complain mode.
+0 processes are in prompt mode.
+0 processes are in kill mode.
 0 processes are unconfined but have a profile defined.
 0 processes are in mixed mode.
-0 processes are in kill mode.
