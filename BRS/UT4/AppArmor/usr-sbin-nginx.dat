@@ -25,6 +25,7 @@ include <tunables/global>
   /var/log/modsec_audit.log wk,
   /var/log/nginx/*.log w,
   /var/www/html/available/* r,
+  
   owner /etc/group r,
   owner /etc/nginx/bots.d/*.conf r,
   owner /etc/nginx/conf.d/ r,
@@ -32,7 +33,7 @@ include <tunables/global>
   owner /etc/nginx/custom-config/*.conf r,
   owner /etc/nginx/mime.types r,
   owner /etc/nginx/modsec/*.conf r,
- owner /etc/nginx/modsec/owasp-modsecurity-crs/ r,
+  owner /etc/nginx/modsec/owasp-modsecurity-crs/ r,
   owner /etc/nginx/modsec/owasp-modsecurity-crs/**.conf r,
   owner /etc/nginx/modsec/owasp-modsecurity-crs/**.data r,
   owner /etc/nginx/modsec/owasp-modsecurity-crs/rules/ r,
