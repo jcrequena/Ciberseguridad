@@ -8,8 +8,8 @@ Tipo de compilación del sistema operativo: Multiprocessor Free
 Propiedad de:                              Usuario de Windows
 Organización registrada:                   
 Id. del producto:                          00456-50926-20002-AA933
-Fecha de instalación original:             01/08/2023, 17:34:16
-Tiempo de arranque del sistema:            04/01/2024, 10:27:54
+Fecha de instalación original:             01/08/2023, 18:34:16
+Tiempo de arranque del sistema:            23/11/2024, 18:15:30
 Fabricante del sistema:                    innotek GmbH
 Modelo el sistema:                         VirtualBox
 Tipo de sistema:                           x64-based PC
@@ -23,29 +23,27 @@ Configuración regional del sistema:        es;Español (internacional)
 Idioma de entrada:                         es;Español (tradicional)
 Zona horaria:                              (UTC+01:00) Bruselas, Copenhague, Madrid, París
 Cantidad total de memoria física:          4.096 MB
-Memoria física disponible:                 2.061 MB
+Memoria física disponible:                 2.152 MB
 Memoria virtual: tamaño máximo:            4.800 MB
-Memoria virtual: disponible:               2.929 MB
-Memoria virtual: en uso:                   1.871 MB
+Memoria virtual: disponible:               2.991 MB
+Memoria virtual: en uso:                   1.809 MB
 Ubicación(es) de archivo de paginación:    C:\pagefile.sys
 Dominio:                                   ciber.mylocal
 Servidor de inicio de sesión:              \\ORION-WS2022
-Revisión(es):                              3 revisión(es) instaladas.
-                                           [01]: KB5029928
-                                           [02]: KB5029250
+Revisión(es):                              4 revisión(es) instaladas.
+                                           [01]: KB5044025
+                                           [02]: KB5044281
                                            [03]: KB5030369
+                                           [04]: KB5044414
 Tarjeta(s) de red:                         4 Tarjetas de interfaz de red instaladas.
                                            [01]: Intel(R) PRO/1000 MT Desktop Adapter
                                                  Nombre de conexión: Ethernet
-                                                 DHCP habilitado:    No
-                                                 Direcciones IP
-                                                 [01]: 192.168.2.254
+                                                 Estado:             Hardware ausente
                                            [02]: Intel(R) PRO/1000 MT Desktop Adapter
                                                  Nombre de conexión: Ethernet 2
-                                                 DHCP habilitado:    Sí
-                                                 Servidor DHCP:      192.168.0.1
+                                                 DHCP habilitado:    No
                                                  Direcciones IP
-                                                 [01]: 192.168.0.28
+                                                 [01]: 192.168.0.40
                                            [03]: TAP-Windows Adapter V9 for OpenVPN Connect
                                                  Nombre de conexión: Conexión de área local
                                                  Estado:             Medios desconectados
