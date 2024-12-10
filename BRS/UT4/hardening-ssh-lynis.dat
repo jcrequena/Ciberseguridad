@@ -1,0 +1,53 @@
+* Consider hardening SSH configuration [SSH-7408] 
+    - Details  : AllowTcpForwarding (set YES to NO)
+    - Related resources
+      * Article: OpenSSH security and hardening: https://linux-audit.com/audit-and-harden-your-ssh-configuration/
+      * Website: https://cisofy.com/lynis/controls/SSH-7408/
+
+  * Consider hardening SSH configuration [SSH-7408] 
+    - Details  : ClientAliveCountMax (set 3 to 2)
+    - Related resources
+      * Article: OpenSSH security and hardening: https://linux-audit.com/audit-and-harden-your-ssh-configuration/
+      * Website: https://cisofy.com/lynis/controls/SSH-7408/
+
+  * Consider hardening SSH configuration [SSH-7408] 
+    - Details  : LogLevel (set INFO to VERBOSE)
+    - Related resources
+      * Article: OpenSSH security and hardening: https://linux-audit.com/audit-and-harden-your-ssh-configuration/
+      * Website: https://cisofy.com/lynis/controls/SSH-7408/
+
+  * Consider hardening SSH configuration [SSH-7408] 
+    - Details  : MaxAuthTries (set 6 to 3)
+    - Related resources
+      * Article: OpenSSH security and hardening: https://linux-audit.com/audit-and-harden-your-ssh-configuration/
+      * Website: https://cisofy.com/lynis/controls/SSH-7408/
+
+  * Consider hardening SSH configuration [SSH-7408] 
+    - Details  : MaxSessions (set 10 to 2)
+    - Related resources
+      * Article: OpenSSH security and hardening: https://linux-audit.com/audit-and-harden-your-ssh-configuration/
+      * Website: https://cisofy.com/lynis/controls/SSH-7408/
+
+  * Consider hardening SSH configuration [SSH-7408] 
+    - Details  : Port (set 22 to )
+    - Related resources
+      * Article: OpenSSH security and hardening: https://linux-audit.com/audit-and-harden-your-ssh-configuration/
+      * Website: https://cisofy.com/lynis/controls/SSH-7408/
+
+  * Consider hardening SSH configuration [SSH-7408] 
+    - Details  : TCPKeepAlive (set YES to NO)
+    - Related resources
+      * Article: OpenSSH security and hardening: https://linux-audit.com/audit-and-harden-your-ssh-configuration/
+      * Website: https://cisofy.com/lynis/controls/SSH-7408/
+
+  * Consider hardening SSH configuration [SSH-7408] 
+    - Details  : X11Forwarding (set YES to NO)
+    - Related resources
+      * Article: OpenSSH security and hardening: https://linux-audit.com/audit-and-harden-your-ssh-configuration/
+      * Website: https://cisofy.com/lynis/controls/SSH-7408/
+
+  * Consider hardening SSH configuration [SSH-7408] 
+    - Details  : AllowAgentForwarding (set YES to NO)
+    - Related resources
+      * Article: OpenSSH security and hardening: https://linux-audit.com/audit-and-harden-your-ssh-configuration/
+      * Website: https://cisofy.com/lynis/controls/SSH-7408/
