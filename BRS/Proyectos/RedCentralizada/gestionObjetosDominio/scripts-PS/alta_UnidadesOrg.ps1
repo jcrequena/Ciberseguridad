@@ -7,7 +7,7 @@
 #Ventas:UO Dep.Ventas:
 #Marketing:UO Dep. Marketing:
 
-param($dominio,$sufifoDominio)
+param($dominio,$sufijoDominio)
 #Componemos el Domain Component para el dominio que se pasa por parámetro
 # en este caso, el dominio es smr.local
 #Por lo que hay que componer dc=smr,dc=local
