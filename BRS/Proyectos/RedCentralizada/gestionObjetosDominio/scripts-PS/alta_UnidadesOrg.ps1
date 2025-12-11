@@ -45,5 +45,5 @@ foreach($line in $fichero)
 	else { $pathObjectUO=$domainComponent}
 	New-ADOrganizationalUnit -Description:$line.Description -Name:$line.Name `
 		-Path:$pathObjectUO -ProtectedFromAccidentalDeletion:$true
-        Write-Host "Unidad organizativa $line.Name creada en el sistema"}
+        Write-Host "Unidad organizativa $line.Name creada en el sistema"
 }
