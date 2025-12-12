@@ -41,8 +41,8 @@ foreach($line in $fichero)
 	#componemos el path (ruta) de la unidad organizativa, es decir, su ubicación en el árbol del dominio
 	#Si está vacío, guardamos en la variable $pathObjectUO, el contenido de la variable $domainComponent 
 	#que hemos compuesto al inicio  del script y que contiene el Domain Component
-	if ($line.Path -Match '') { $pathObjectUO=$line.Path+","+$domainComponent}
-	else { $pathObjectUO=$domainComponent}
+	if ($line.Path -Match '') { $pathObjectUO=$domainComponent}
+	else { $pathObjectUO=$line.Path}
 	New-ADOrganizationalUnit -Description:$line.Description -Name:$line.Name `
 		-Path:$pathObjectUO -ProtectedFromAccidentalDeletion:$true
         Write-Host "Unidad organizativa $line.Name creada en el sistema"
