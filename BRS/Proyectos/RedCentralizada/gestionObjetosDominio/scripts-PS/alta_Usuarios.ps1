@@ -2,7 +2,7 @@
 #Name*Surname*Surname1*Surname2*Account*OU*Group*Departament*Enabled*Password*ExpirationAccount*NetTime
 # Llamada: alta_Usuarios.ps1 ciber mylocal
 #Capturamos los 2 parámetros que hemos pasado en la ejecución del script
-PParam(
+Param(
     [string] $dominio,
     [string] $sufijo
 )
@@ -21,7 +21,7 @@ $fileUsersCsv=Read-Host "Introduce el fichero csv de los usuarios"
 #
 #Los campos del fichero csv están separados por el carácter asterisco (*)
 #
-$fichero = import-csv -Path $fileUsersCsv -Delimiter *					     		     
+$fichero = import-csv -Path $fileUsersCsv -Delimiter '*'					     		     
 foreach($linea in $fichero)
 {
 	$passAccount=ConvertTo-SecureString $linea.Password -AsPlainText -force
