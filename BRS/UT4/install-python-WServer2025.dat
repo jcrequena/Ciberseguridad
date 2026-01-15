@@ -1,12 +1,12 @@
-#A fecha 15/01/2026 la última versión es la 3.15.0a1
+#A fecha 15/01/2026 la última versión es la 3.14.2
 # download
-PS C:\Users\Administrator> Invoke-WebRequest -Uri https://www.python.org/ftp/python/3.15.0/python-3.15.0a1-amd64.exe -OutFile "python-3.15.0a1-amd64.exe"
+PS C:\Users\Administrator> Invoke-WebRequest -Uri https://www.python.org/ftp/python/3.14.2/python-3.14.2-amd64.exe  -OutFile "python-3.14.2-amd64.exe"
 
 # install (to System Wide + set PATH)
-PS C:\Users\Administrator> .\python-3.15.0a1-amd64.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0 
+PS C:\Users\Administrator> .\python-3.14.2-amd64.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0 
 
 # reload environment variables
 PS C:\Users\Administrator> $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User") 
 # Check version
 PS C:\Users\Administrator> python -V 
-Python 3.15.0a1
+Python 3.14.2
