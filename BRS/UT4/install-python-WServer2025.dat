@@ -1,4 +1,4 @@
-#A fecha 15/01/2026 la última versión es la 3.15.0
+#A fecha 15/01/2026 la última versión es la 3.15.0a1
 # download
 PS C:\Users\Administrator> Invoke-WebRequest -Uri https://www.python.org/ftp/python/3.15.0/python-3.15.0a1-amd64.exe -OutFile "python-3.15.0a1-amd64.exe"
 
