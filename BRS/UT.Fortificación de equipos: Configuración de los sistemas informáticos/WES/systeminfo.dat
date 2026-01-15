@@ -1,53 +1,52 @@
 
-Nombre de host:                            ORION-WS2022
-Nombre del sistema operativo:              Microsoft Windows Server 2022 Datacenter
-Versión del sistema operativo:             10.0.20348 N/D Compilación 20348
+Nombre de host:                            ORION
+Nombre del sistema operativo:              Microsoft Windows Server 2025 Datacenter
+Versión del sistema operativo:             10.0.26100 N/D Compilación 26100
 Fabricante del sistema operativo:          Microsoft Corporation
 Configuración del sistema operativo:       Controlador de dominio principal
 Tipo de compilación del sistema operativo: Multiprocessor Free
-Propiedad de:                              Usuario de Windows
-Organización registrada:                   
-Id. del producto:                          00456-50926-20002-AA933
-Fecha de instalación original:             01/08/2023, 18:34:16
-Tiempo de arranque del sistema:            23/11/2024, 18:15:30
+Propietario registrado:                    N/D
+Organización registrada:                   N/D
+Id. del producto:                          00491-40160-71402-AA992
+Fecha de instalación original:             23/05/2025, 9:49:35
+Tiempo de arranque del sistema:            15/01/2026, 18:35:07
 Fabricante del sistema:                    innotek GmbH
-Modelo el sistema:                         VirtualBox
+Modelo del sistema:                        VirtualBox
 Tipo de sistema:                           x64-based PC
-Procesador(es):                            1 Procesadores instalados.
+Procesadores:                              1 Procesadores instalados.
                                            [01]: Intel64 Family 6 Model 158 Stepping 13 GenuineIntel ~2304 Mhz
 Versión del BIOS:                          innotek GmbH VirtualBox, 01/12/2006
-Directorio de Windows:                     C:\Windows
-Directorio de sistema:                     C:\Windows\system32
+Directorio de Windows:                     C:\WINDOWS
+Directorio de sistema:                     C:\WINDOWS\system32
 Dispositivo de arranque:                   \Device\HarddiskVolume1
 Configuración regional del sistema:        es;Español (internacional)
 Idioma de entrada:                         es;Español (tradicional)
 Zona horaria:                              (UTC+01:00) Bruselas, Copenhague, Madrid, París
-Cantidad total de memoria física:          4.096 MB
-Memoria física disponible:                 2.152 MB
-Memoria virtual: tamaño máximo:            4.800 MB
-Memoria virtual: disponible:               2.991 MB
-Memoria virtual: en uso:                   1.809 MB
-Ubicación(es) de archivo de paginación:    C:\pagefile.sys
+Memoria física total:                      8.176 MB
+Memoria física disponible:                 5.020 MB
+Memoria virtual: tamaño máximo:            10.096 MB
+Memoria virtual: disponible:               7.292 MB
+Memoria virtual: en uso:                   2.804 MB
+Ubicaciones de archivos de página:         C:\pagefile.sys
 Dominio:                                   ciber.mylocal
-Servidor de inicio de sesión:              \\ORION-WS2022
-Revisión(es):                              4 revisión(es) instaladas.
-                                           [01]: KB5044025
-                                           [02]: KB5044281
-                                           [03]: KB5030369
-                                           [04]: KB5044414
-Tarjeta(s) de red:                         4 Tarjetas de interfaz de red instaladas.
+Servidor de inicio de sesión:              \\ORION
+Revisiones:                                3 revisión(es) instaladas.
+                                           [01]: KB5066131
+                                           [02]: KB5072033
+                                           [03]: KB5071142
+Tarjetas de red:                           1 Tarjetas de interfaz de red instaladas.
                                            [01]: Intel(R) PRO/1000 MT Desktop Adapter
                                                  Nombre de conexión: Ethernet
-                                                 Estado:             Hardware ausente
-                                           [02]: Intel(R) PRO/1000 MT Desktop Adapter
-                                                 Nombre de conexión: Ethernet 2
-                                                 DHCP habilitado:    No
+                                                 DHCP habilitado:    Sí
+                                                 Servidor DHCP:      10.0.2.2
                                                  Direcciones IP
-                                                 [01]: 192.168.0.40
-                                           [03]: TAP-Windows Adapter V9 for OpenVPN Connect
-                                                 Nombre de conexión: Conexión de área local
-                                                 Estado:             Medios desconectados
-                                           [04]: OpenVPN Data Channel Offload
-                                                 Nombre de conexión: OpenVPN Connect DCO Adapter
-                                                 Estado:             Medios desconectados
-Requisitos Hyper-V:                        Se detectó un hipervisor. No se mostrarán las características necesarias para Hyper-V.
+                                                 [01]: 10.0.2.15
+                                                 [02]: fe80::e663:422c:1a90:505d
+Seguridad basada en virtualización:        Estado: No habilitado
+                                           App Control for Business policy: Forzado
+                                           App Control for Business user mode policy: Desactivado
+                                           Características de seguridad habilitadas:
+Requisitos Hyper-V:                        Extensiones de modo de monitor de VM: No
+                                           Se habilitó la virtualización en el firmware: No
+                                           Traducción de direcciones de segundo nivel: No
+                                           La prevención de ejecución de datos está disponible: Sí
