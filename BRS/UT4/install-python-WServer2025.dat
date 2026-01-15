@@ -9,4 +9,4 @@ PS C:\Users\Administrator> .\python-3.15.0a1-amd64.exe /quiet InstallAllUsers=1 
 PS C:\Users\Administrator> $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User") 
 # Check version
 PS C:\Users\Administrator> python -V 
-Python 3.15.
+Python 3.15.0a1
