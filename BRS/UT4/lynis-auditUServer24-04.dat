@@ -1,11 +1,11 @@
-[ Lynis 3.1.3 ]
+[ Lynis 3.1.6 ]
 
 ################################################################################
   Lynis comes with ABSOLUTELY NO WARRANTY. This is free software, and you are
   welcome to redistribute it under the terms of the GNU General Public License.
   See the LICENSE file for details about using this software.
 
-  2007-2024, CISOfy - https://cisofy.com/lynis/
+  2007-2025, CISOfy - https://cisofy.com/lynis/
   Enterprise support available (compliance, plugins, interface and tools)
 ################################################################################
 
@@ -15,24 +15,16 @@
   - Detecting OS...                                           [ DONE ]
   - Checking profiles...                                      [ DONE ]
   - Detecting language and localization                       [ es ]
-    Translation file (db/languages/es) needs an update        [ OUTDATED ]
-    =======================================================================
-    Help other users and translate the missing lines:
-    1) Go to: https://github.com/CISOfy/lynis/edit/master/db/languages/es
-    2) Translate (some of) the lines starting with a hash (#) and remove the leading hash
-    3) Commit the changes
-    Thank you!
-    Note: no lines with a hash? Look if the file recently has been changed by another translator.
-    =======================================================================
 
   ---------------------------------------------------
-  Program version:           3.1.3
+  Program version:           3.1.6
   Operating system:          Linux
   Operating system name:     Ubuntu
   Operating system version:  24.04
+  End-of-life:               NO
   Kernel version:            6.8.0
   Hardware platform:         x86_64
-  Hostname:                  openLDAP-ciber
+  Hostname:                  serv01
   ---------------------------------------------------
   Profiles:                  /home/administrador/lynis/default.prf
   Log file:                  /var/log/lynis.log
@@ -92,8 +84,7 @@
     - rc-local.service (value=9.6)                            [ INSEGURO ]
     - rescue.service (value=9.5)                              [ INSEGURO ]
     - rsyslog.service (value=6.3)                             [ MEDIO ]
-    - slapd.service (value=9.6)                               [ INSEGURO ]
-    - snapd.service (value=9.8)                               [ INSEGURO ]
+    - snapd.service (value=9.9)                               [ INSEGURO ]
     - ssh.service (value=9.6)                                 [ INSEGURO ]
     - systemd-ask-password-console.service (value=9.4)        [ INSEGURO ]
     - systemd-ask-password-plymouth.service (value=9.5)       [ INSEGURO ]
@@ -113,6 +104,7 @@
     - ubuntu-advantage.service (value=9.6)                    [ INSEGURO ]
     - udisks2.service (value=9.6)                             [ INSEGURO ]
     - unattended-upgrades.service (value=9.6)                 [ INSEGURO ]
+    - upower.service (value=2.4)                              [ PROTEGIDO ]
     - user@1000.service (value=9.4)                           [ INSEGURO ]
     - uuidd.service (value=5.8)                               [ MEDIO ]
     - vgauth.service (value=9.5)                              [ INSEGURO ]
@@ -125,7 +117,7 @@
   - Checking kernel version and release                       [ HECHO ]
   - Checking kernel type                                      [ HECHO ]
   - Checking loaded kernel modules                            [ HECHO ]
-      Found 71 active modules
+      Found 73 active modules
   - Checking Linux kernel configuration file                  [ ENCONTRADO ]
   - Checking default I/O kernel scheduler                     [ NO ENCONTRADO ]
   - Checking for available kernel update                      [ OK ]
@@ -135,7 +127,7 @@
     - 'hard' configuration in /etc/security/limits.conf       [ POR DEFECTO ]
     - 'soft' configuration in /etc/security/limits.conf       [ POR DEFECTO ]
     - Checking setuid core dumps configuration                [ PROTEGIDO ]
-  - Check if reboot is needed                                 [ NO ]
+  - Check if reboot is needed                                 [ SÍ ]
 
 [+] Memoria y procesos
 ------------------------------------
@@ -152,7 +144,7 @@
   - Unique group IDs                                          [ OK ]
   - Unique group names                                        [ OK ]
   - Password file consistency                                 [ OK ]
-  - Password hashing methods                                  [ OK ]
+  - Password hashing methods                                  [ SUGERENCIA ]
   - Checking password hashing rounds                          [ DESHABILITADO ]
   - Query system users (non daemons)                          [ HECHO ]
   - NIS+ authentication support                               [ NO HABILITADO ]
@@ -245,13 +237,13 @@
   - Searching package managers
     - Searching dpkg package manager                          [ ENCONTRADO ]
       - Querying package manager
-    - Query unpurged packages                                 [ ENCONTRADO ]
+    - Query unpurged packages                                 [ NINGUNO ]
   - Checking security repository in sources.list.d directory  [ OK ]
   - Checking APT package database                             [ OK ]
-  - Checking vulnerable packages                              [ PELIGRO ]
+  - Checking vulnerable packages                              [ OK ]
   - Checking upgradeable packages                             [ OMITIDO ]
   - Checking package audit tool                               [ INSTALADO ]
-    Found: apt-get
+    Found: apt-check
   - Toolkit for automatic upgrades (unattended-upgrade)       [ ENCONTRADO ]
 
 [+] Conectividad
@@ -329,8 +321,7 @@
 
 [+] Servicios LDAP
 ------------------------------------
-  - Checking OpenLDAP instance                                [ ENCONTRADO ]
-    - Checking slapd.conf                                     [ NO ENCONTRADO ]
+  - Checking OpenLDAP instance                                [ NO ENCONTRADO ]
 
 [+] PHP
 ------------------------------------
@@ -354,7 +345,7 @@
   - Checking remote logging                                   [ NO HABILITADO ]
   - Checking log directories (static list)                    [ HECHO ]
   - Checking open log files                                   [ HECHO ]
-  - Checking deleted files in use                             [ HECHO ]
+  - Checking deleted files in use                             [ ARCHIVOS ENCONTRADOS ]
 
 [+] Servicios inseguros
 ------------------------------------
@@ -391,11 +382,11 @@
 ------------------------------------
   - NTP daemon found: systemd (timesyncd)                     [ ENCONTRADO ]
   - Checking for a running NTP daemon or client               [ OK ]
-  - Last time synchronization                                 [ 694s ]
+  - Last time synchronization                                 [ 44s ]
 
 [+] Criptografía
 ------------------------------------
-  - Checking for expired SSL certificates [0/153]             [ NINGUNO ]
+  - Checking for expired SSL certificates [0/150]             [ NINGUNO ]
   - Found 0 encrypted and 1 unencrypted swap devices in use.  [ OK ]
   - Kernel entropy is sufficient                              [ SÍ ]
   - HW RNG & rngd                                             [ NO ]
@@ -412,7 +403,7 @@
 ------------------------------------
   - Checking presence AppArmor                                [ ENCONTRADO ]
     - Checking AppArmor status                                [ HABILITADO ]
-        Found 31 unconfined processes
+        Found 35 unconfined processes
   - Checking presence SELinux                                 [ NO ENCONTRADO ]
   - Checking presence TOMOYO Linux                            [ NO ENCONTRADO ]
   - Checking presence grsecurity                              [ NO ENCONTRADO ]
@@ -505,7 +496,7 @@
 
 [+] Bastionado
 ------------------------------------
-    - Installed compiler(s)                                   [ NO ENCONTRADO ]
+    - Installed compiler(s)                                   [ ENCONTRADO ]
     - Installed malware scanner                               [ NO ENCONTRADO ]
     - Non-native binary formats                               [ ENCONTRADO ]
 
@@ -519,17 +510,18 @@
 
 ================================================================================
 
-  -[ Lynis 3.1.3 Results ]-
+  -[ Lynis 3.1.6 Results ]-
 
   Warnings (2):
   ----------------------------
-  ! Found one or more vulnerable packages. [PKGS-7392] 
-      https://cisofy.com/lynis/controls/PKGS-7392/
+  ! Reboot of system is most likely needed [KRNL-5830] 
+    - Solution : reboot
+      https://cisofy.com/lynis/controls/KRNL-5830/
 
   ! iptables module(s) loaded, but no rules active [FIRE-4512] 
       https://cisofy.com/lynis/controls/FIRE-4512/
 
-  Suggestions (42):
+  Suggestions (43):
   ----------------------------
   * Set a password on GRUB boot loader to prevent altering boot configuration (e.g. boot in single user mode without password) [BOOT-5122] 
     - Related resources
@@ -543,10 +535,17 @@
 
   * If not required, consider explicit disabling of core dump in /etc/security/limits.conf file [KRNL-5820] 
     - Related resources
+      * Article: Understand and configure core dumps on Linux: https://linux-audit.com/software/understand-and-configure-core-dumps-work-on-linux/
       * Website: https://cisofy.com/lynis/controls/KRNL-5820/
+
+  * Check PAM configuration, add rounds if applicable and expire passwords to encrypt with new values [AUTH-9229] 
+    - Related resources
+      * Article: Linux password security: hashing rounds: https://linux-audit.com/authentication/configure-the-minimum-password-length-on-linux-systems/
+      * Website: https://cisofy.com/lynis/controls/AUTH-9229/
 
   * Configure password hashing rounds in /etc/login.defs [AUTH-9230] 
     - Related resources
+      * Article: Linux password security: hashing rounds: https://linux-audit.com/authentication/configure-the-minimum-password-length-on-linux-systems/
       * Website: https://cisofy.com/lynis/controls/AUTH-9230/
 
   * Install a PAM module for password strength testing like pam_cracklib or pam_passwdqc or libpam-passwdqc [AUTH-9262] 
@@ -570,6 +569,7 @@
 
   * Default umask in /etc/login.defs could be more strict like 027 [AUTH-9328] 
     - Related resources
+      * Article: Set default file permissions on Linux with umask: https://linux-audit.com/filesystems/file-permissions/set-default-file-permissions-with-umask/
       * Website: https://cisofy.com/lynis/controls/AUTH-9328/
 
   * To decrease the impact of a full /home file system, place /home on a separate partition [FILE-6310] 
@@ -592,17 +592,9 @@
     - Related resources
       * Website: https://cisofy.com/lynis/controls/NAME-4028/
 
-  * Purge old/removed packages (3 found) with aptitude purge or dpkg --purge command. This will cleanup old configuration files, cron jobs and startup scripts. [PKGS-7346] 
-    - Related resources
-      * Website: https://cisofy.com/lynis/controls/PKGS-7346/
-
   * Install debsums utility for the verification of packages with known good database. [PKGS-7370] 
     - Related resources
       * Website: https://cisofy.com/lynis/controls/PKGS-7370/
-
-  * Update your system with apt-get update, apt-get upgrade, apt-get dist-upgrade and/or unattended-upgrades [PKGS-7392] 
-    - Related resources
-      * Website: https://cisofy.com/lynis/controls/PKGS-7392/
 
   * Install package apt-show-versions for patch management purposes [PKGS-7394] 
     - Related resources
@@ -627,60 +619,64 @@
   * Consider hardening SSH configuration [SSH-7408] 
     - Details  : AllowTcpForwarding (set YES to NO)
     - Related resources
-      * Article: OpenSSH security and hardening: https://linux-audit.com/audit-and-harden-your-ssh-configuration/
+      * Article: OpenSSH security and hardening: https://linux-audit.com/ssh/audit-and-harden-your-ssh-configuration/
       * Website: https://cisofy.com/lynis/controls/SSH-7408/
 
   * Consider hardening SSH configuration [SSH-7408] 
     - Details  : ClientAliveCountMax (set 3 to 2)
     - Related resources
-      * Article: OpenSSH security and hardening: https://linux-audit.com/audit-and-harden-your-ssh-configuration/
+      * Article: OpenSSH security and hardening: https://linux-audit.com/ssh/audit-and-harden-your-ssh-configuration/
       * Website: https://cisofy.com/lynis/controls/SSH-7408/
 
   * Consider hardening SSH configuration [SSH-7408] 
     - Details  : LogLevel (set INFO to VERBOSE)
     - Related resources
-      * Article: OpenSSH security and hardening: https://linux-audit.com/audit-and-harden-your-ssh-configuration/
+      * Article: OpenSSH security and hardening: https://linux-audit.com/ssh/audit-and-harden-your-ssh-configuration/
       * Website: https://cisofy.com/lynis/controls/SSH-7408/
 
   * Consider hardening SSH configuration [SSH-7408] 
     - Details  : MaxAuthTries (set 6 to 3)
     - Related resources
-      * Article: OpenSSH security and hardening: https://linux-audit.com/audit-and-harden-your-ssh-configuration/
+      * Article: OpenSSH security and hardening: https://linux-audit.com/ssh/audit-and-harden-your-ssh-configuration/
       * Website: https://cisofy.com/lynis/controls/SSH-7408/
 
   * Consider hardening SSH configuration [SSH-7408] 
     - Details  : MaxSessions (set 10 to 2)
     - Related resources
-      * Article: OpenSSH security and hardening: https://linux-audit.com/audit-and-harden-your-ssh-configuration/
+      * Article: OpenSSH security and hardening: https://linux-audit.com/ssh/audit-and-harden-your-ssh-configuration/
       * Website: https://cisofy.com/lynis/controls/SSH-7408/
 
   * Consider hardening SSH configuration [SSH-7408] 
     - Details  : Port (set 22 to )
     - Related resources
-      * Article: OpenSSH security and hardening: https://linux-audit.com/audit-and-harden-your-ssh-configuration/
+      * Article: OpenSSH security and hardening: https://linux-audit.com/ssh/audit-and-harden-your-ssh-configuration/
       * Website: https://cisofy.com/lynis/controls/SSH-7408/
 
   * Consider hardening SSH configuration [SSH-7408] 
     - Details  : TCPKeepAlive (set YES to NO)
     - Related resources
-      * Article: OpenSSH security and hardening: https://linux-audit.com/audit-and-harden-your-ssh-configuration/
+      * Article: OpenSSH security and hardening: https://linux-audit.com/ssh/audit-and-harden-your-ssh-configuration/
       * Website: https://cisofy.com/lynis/controls/SSH-7408/
 
   * Consider hardening SSH configuration [SSH-7408] 
     - Details  : X11Forwarding (set YES to NO)
     - Related resources
-      * Article: OpenSSH security and hardening: https://linux-audit.com/audit-and-harden-your-ssh-configuration/
+      * Article: OpenSSH security and hardening: https://linux-audit.com/ssh/audit-and-harden-your-ssh-configuration/
       * Website: https://cisofy.com/lynis/controls/SSH-7408/
 
   * Consider hardening SSH configuration [SSH-7408] 
     - Details  : AllowAgentForwarding (set YES to NO)
     - Related resources
-      * Article: OpenSSH security and hardening: https://linux-audit.com/audit-and-harden-your-ssh-configuration/
+      * Article: OpenSSH security and hardening: https://linux-audit.com/ssh/audit-and-harden-your-ssh-configuration/
       * Website: https://cisofy.com/lynis/controls/SSH-7408/
 
   * Enable logging to an external logging host for archiving purposes and additional protection [LOGG-2154] 
     - Related resources
       * Website: https://cisofy.com/lynis/controls/LOGG-2154/
+
+  * Check what deleted files are still in use and why. [LOGG-2190] 
+    - Related resources
+      * Website: https://cisofy.com/lynis/controls/LOGG-2190/
 
   * Add a legal banner to /etc/issue, to warn unauthorized users [BANN-7126] 
     - Related resources
@@ -702,7 +698,7 @@
 
   * Enable auditd to collect audit information [ACCT-9628] 
     - Related resources
-      * Article: Linux audit framework 101: basic rules for configuration: https://linux-audit.com/linux-audit-framework-101-basic-rules-for-configuration/
+      * Article: Linux audit framework 101: basic rules for configuration: https://linux-audit.com/linux-audit-framework/linux-audit-framework-101-basic-rules-for-configuration/
       * Article: Monitoring Linux file access, changes and data modifications: https://linux-audit.com/monitoring-linux-file-access-changes-and-modifications/
       * Website: https://cisofy.com/lynis/controls/ACCT-9628/
 
@@ -729,6 +725,11 @@
       * Article: Overview of sysctl options and values: https://linux-audit.com/kernel/sysctl/
       * Website: https://cisofy.com/lynis/controls/KRNL-6000/
 
+  * Harden compilers like restricting access to root user only [HRDN-7222] 
+    - Related resources
+      * Article: Why remove compilers from your system?: https://linux-audit.com/software/why-remove-compilers-from-your-system/
+      * Website: https://cisofy.com/lynis/controls/HRDN-7222/
+
   * Harden the system by installing at least one malware scanner, to perform periodic file system scans [HRDN-7230] 
     - Solution : Install a tool like rkhunter, chkrootkit, OSSEC, Wazuh
     - Related resources
@@ -747,21 +748,23 @@
 
   Lynis security scan details:
 
-  Hardening index : 59 [###########         ]
-  Tests performed : 272
-  Plugins enabled : 2
-
-  Components:
-  - Firewall               [V]
-  - Malware scanner        [X]
-
   Scan mode:
-  Normal [V]  Forensics [ ]  Integration [ ]  Pentest [ ]
+  Normal [▆]  Forensics [ ]  Integration [ ]  Pentest [ ]
 
   Lynis modules:
   - Compliance status      [?]
   - Security audit         [V]
   - Vulnerability scan     [V]
+
+  Details:
+  Hardening index : 62 [############        ]
+  Tests performed : 271
+  Plugins enabled : 2
+
+  Software components:
+  - Firewall               [V]
+  - Intrusion software     [X]
+  - Malware scanner        [X]
 
   Files:
   - Test and debug information      : /var/log/lynis.log
@@ -769,12 +772,12 @@
 
 ================================================================================
 
-  Lynis 3.1.3
+  Lynis 3.1.6
 
   Auditing, system hardening, and compliance for UNIX-based systems
   (Linux, macOS, BSD, and others)
 
-  2007-2024, CISOfy - https://cisofy.com/lynis/
+  2007-2025, CISOfy - https://cisofy.com/lynis/
   Enterprise support available (compliance, plugins, interface and tools)
 
 ================================================================================
