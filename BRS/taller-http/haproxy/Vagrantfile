@@ -1,0 +1,62 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+
+Vagrant.configure("2") do |config|
+config.vm.define :frontend do |frontend|
+    frontend.vm.box = "debian/bookworm64"
+    frontend.vm.hostname = "frontend"
+    frontend.vm.network :private_network,
+          :libvirt__network_name => "red_privada1",
+          :libvirt__dhcp_enabled => false,
+          :ip => "10.10.10.1",
+          :libvirt__forward_mode => "veryisolated"
+    frontend.vm.synced_folder ".", "/vagrant", disabled: true
+    frontend.vm.provider :libvirt do |libvirt|
+      libvirt.memory = 512
+      libvirt.cpus = 1
+    end
+    frontend.vm.provision "shell", run: "always", inline: <<-SHELL
+        apt-get update #&& apt-get upgrade -y
+        apt-get install haproxy -y
+      SHELL
+  end
+  config.vm.define :backend1 do |backend1|
+    backend1.vm.box = "debian/bookworm64"
+    backend1.vm.hostname = "backend1"
+    backend1.vm.network :private_network,
+          :libvirt__network_name => "red_privada1",
+          :libvirt__dhcp_enabled => false,
+          :ip => "10.10.10.11",
+          :libvirt__forward_mode => "veryisolated"
+    backend1.vm.provider :libvirt do |libvirt|
+      libvirt.memory = 512
+      libvirt.cpus = 1
+    end
+    backend1.vm.provision "shell", run: "always", inline: <<-SHELL
+        apt-get update #&& apt-get upgrade -y
+        apt-get install apache2 -y
+        cp /vagrant/ficheros/index_apache1.html /var/www/html/index.html
+      SHELL
+  end
+
+  config.vm.define :backend2 do |backend2|
+    backend2.vm.box = "debian/bookworm64"
+    backend2.vm.hostname = "backend2"
+    backend2.vm.network :private_network,
+          :libvirt__network_name => "red_privada1",
+          :libvirt__dhcp_enabled => false,
+          :ip => "10.10.10.22",
+          :libvirt__forward_mode => "veryisolated"
+    backend2.vm.provider :libvirt do |libvirt|
+      libvirt.memory = 512
+      libvirt.cpus = 1
+    end
+    backend2.vm.provision "shell", run: "always", inline: <<-SHELL
+        apt-get update #&& apt-get upgrade -y
+        apt-get install apache2 -y
+        cp /vagrant/ficheros/index_apache2.html /var/www/html/index.html
+      SHELL
+  end
+  
+end
